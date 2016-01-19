@@ -1,0 +1,22 @@
+<h1>Správa užívateľov</h1>
+
+<table>
+    <tr>
+        <td>Uzivatel</td>
+        <td>Hodnosť</td>
+        <td>Články</td>
+        <td>Komentáre</td>
+        <td></td>
+    </tr>
+    <?php if($admin) : ?>
+        <?php foreach ($users as $user) : ?>
+            <tr>
+                <td><a href="uzivatelia/<?= $user['name'] ?>"><?= $user['name'] ?></a></td>
+                <td><?= $user['rank'] ?></td>
+                <td><?= $user['articles'] ?></td>
+                <td><?= $user['comments'] ?></td>
+                <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit">Odstrániť</a></td>
+            </tr>
+        <?php endforeach ?>
+    <?php endif ?>
+</table>

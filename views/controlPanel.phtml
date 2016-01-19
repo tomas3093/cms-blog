@@ -1,0 +1,69 @@
+<h1>Ovládací panel</h1>
+<br>
+
+<?php if($admin == '1') : #ak je prihlaseny admin ?>
+
+    <ul>
+        <li><a href="/editor"><i class="icon-pencil"></i> Nový článok</a></li>
+        <li><a href="/clanky/unpublished"><i class="fa fa-pencil-square-o"></i> Rozpísané články</a></li>
+        <li><a href="/clanky"><i class="fa fa-tasks"></i> Správa článkov</a></li>
+        <li><a href="/uzivatelia"><i class="fa fa-users"></i> Správa užívatelov</a></li>
+        <li><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></li>
+    </ul>
+
+<?php endif ?>
+
+<h2>Správy</h2>
+<table>
+    <tr>
+        <td>Prijaté</td>
+        <td>Odoslané</td>
+    </tr>
+</table>
+
+<h2><?= $user ?></h2>
+<h3>Prehľad profilu</h3>
+<br>
+
+<table>
+    <tr>
+        <td><img id="avatar" src="/img/users/<?= $avatar ?>"></td>
+    </tr>
+
+    <tr>
+        <td>Hodnosť</td>
+        <td><?= $userRank ?></td>
+    </tr>
+
+    <tr>
+        <td>Registrovaný</td>
+        <td><?= date("j.n.Y H:i:s", $registrationDate) ?></td>
+    </tr>
+
+    <tr>
+        <td>Posledné prihlásenie</td>
+        <td><?= date("j.n.Y H:i:s", $lastVisit) ?></td>
+    </tr>
+
+    <tr>
+        <td>Článkov</td>
+        <td><?= $articles ?></td>
+    </tr>
+
+    <tr>
+        <td>Komentárov</td>
+        <td><?= $comments ?></td>
+    </tr>
+
+    <tr>
+        <td>Pohlavie</td>
+        <td><?= $sex ?></td>
+    </tr>
+
+    <tr>
+        <td>Email</td>
+        <td><?= $email ?></td>
+    </tr>
+</table>
+<br>
+<a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a>

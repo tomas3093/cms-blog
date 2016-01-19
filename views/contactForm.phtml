@@ -1,0 +1,12 @@
+<h1>Kontaktujte nás</h1>
+
+<p>Odoslaním formulára nám môžete zanechať správu</p>
+
+<form method="post">
+    Vaša emailová adresa<br />
+    <input type="email" name="email" required="required" value="<?php if(isset($_POST['email'])) echo(htmlspecialchars($_POST['email'])); ?>"/><br />
+    Antispam - zadajte aktuálny rok<br />
+    <input type="text" name="year" required="required"><br />
+    <textarea name="message"><?php if(isset($_POST['message'])) echo(htmlspecialchars($_POST['message'])) ?></textarea><br />
+    <input type="submit" value="Odoslať"/>
+</form>

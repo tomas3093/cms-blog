@@ -1,0 +1,49 @@
+<h1>Štatistiky</h1>
+
+<p>
+    <h2>Uzivatelia podla poctu clankov</h2>
+    <table>
+        <tr>
+            <th>Uzivatel</th>
+            <th>Clankov</th>
+        </tr>
+        <?php foreach($usersByArticles as $user) : ?>
+            <tr>
+                <td><?= $user['name'] ?></td>
+                <td><?= $user['articles'] ?></td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</p>
+
+<p>
+    <h2>Uzivatelia podla poctu komentarov</h2>
+    <table>
+        <tr>
+            <th>Uzivatel</th>
+            <th>Komentarov</th>
+        </tr>
+        <?php foreach($usersByComments as $user) : ?>
+            <tr>
+                <td><?= $user['name'] ?></td>
+                <td><?= $user['comments'] ?></td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</p>
+
+<p>
+    <h2>Clanky podla navstevnosti</h2>
+    <table>
+        <tr>
+            <th>Clanok</th>
+            <th>Zobrazenia</th>
+        </tr>
+        <?php foreach($articlesByVisits as $article) : ?>
+            <tr>
+                <td><?= $article['title'] ?></td>
+                <td><?= $article['visits'] ?></td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</p>

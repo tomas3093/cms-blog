@@ -1,0 +1,67 @@
+<h1>Editor článkov</h1>
+
+<form method="post" id="editor-form">
+    <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
+    <input type="hidden" name="url" value="<?= $article['url'] ?>">
+
+    <table>
+        <tr>
+            <td>Autor</td>
+            <td>
+                <select name="author" form="editor-form" <?php if(!empty($article['author'])) echo("disabled='true'"); //autor clanku sa uz znova nemoze zmenit ?> >
+                    <?php foreach($authors as $author) : ?>
+                        <option value="<?= $author['name'] ?>"
+                            <?php if($author['name'] == $article['author']) echo("selected='selected'"); //nastavenie default hodnoty ?> >
+                            <?= $author['name'] ?>
+                        </option>
+                    <?php endforeach ?>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Náhľadový obrázok</td>
+            <td><input type="url" name="thumbnail_img" value="<?= $article['thumbnail_img'] ?>" placeholder="URL adresa obrázka"></td>
+        </tr>
+
+        <tr>
+            <td>Titulok</td>
+            <td><input type="text" name="title" value="<?= $article['title'] ?>" required></td>
+        </tr>
+
+        <tr>
+            <td>Popis</td>
+            <td><input type="text" name="description" value="<?= $article['description'] ?>" required></td>
+        </tr>
+
+        <tr>
+            <td>Kľučové slová</td>
+            <td><input type="text" name="key_words" value="<?= $article['key_words'] ?>" required><br></td>
+        </tr>
+
+        <tr>
+            <td>Publikovať</td>
+            <td><input type="checkbox" name="public"></td>
+        </tr>
+    </table>
+
+    <textarea name="content"><?= $article['content'] ?></textarea><br>
+    <input type="submit" value="Uložiť článok">
+</form>
+
+
+<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea[name=content]",
+        plugins: [
+            "advlist autolink lists link image charmap print preview anchor",
+            "searchreplace visualblocks code fullscreen",
+            "insertdatetime media table contextmenu paste"
+        ],
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        entities: "160,nbsp",
+        entity_encoding: "named",
+        entity_encoding: "raw"
+    });
+</script>
