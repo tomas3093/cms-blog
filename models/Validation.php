@@ -24,6 +24,32 @@ class Validation
         return $rank;
     }
 
+    //vrati nazov kategorie
+    public function returnCategoryName($value)
+    {
+        $category = '';
+
+        switch($value)
+        {
+            case 'novinky':
+                $category = 'Novinky';
+                break;
+            case 'programovanie':
+                $category = 'Programovanie';
+                break;
+            case 'hardware':
+                $category = 'Hardware';
+                break;
+            case 'software':
+                $category = 'Software';
+                break;
+            case 'ostatne':
+                $category = 'Ostatné';
+                break;
+        }
+        return $category;
+    }
+
     //overi minimalnu dlzku hesla
     public function checkPasswordLength($password)
     {
@@ -76,8 +102,8 @@ class Validation
 
         $username = strip_tags($username);
 
-        //test retazca pomocou regularneho vyrazu (1. musi zacinat pismenom, 2. dlzka 5 - 32 znakov, 3. obsahuje iba pismena a cisla)
-        if(!preg_match('/^[A-Za-z][A-Za-z0-9]{4,31}$/', $username))
+        //test retazca pomocou regularneho vyrazu (1. musi zacinat pismenom, 2. dlzka 4 - 32 znakov, 3. obsahuje iba pismena a cisla)
+        if(!preg_match('/^[A-Za-z][A-Za-z0-9]{3,31}$/', $username))
             throw new UserError('Používateľské meno obsahuje nepovolené znaky alebo je v nesprávnom tvare!');
 
         return $username;

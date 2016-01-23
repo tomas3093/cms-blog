@@ -32,6 +32,12 @@ class ClankyController extends Controller
 
             $this->data['currentPage'] = 1;         //aktualna strana
 
+            //hlavicka stranky
+            $this->head = array(
+                'title' => 'Zverejnené články',
+                'key_words' => 'coding.wz.sk - články',
+                'description' => 'Zverejnené články'
+            );
             $this->view = 'articles';
         }
 
@@ -41,6 +47,12 @@ class ClankyController extends Controller
             $articles = $articleManager->returnUnpublishedArticles();
             $this->data['articles'] = $validation->statusOfArticles($articles);
 
+            //hlavicka stranky
+            $this->head = array(
+                'title' => 'Nezverejnené články',
+                'key_words' => 'coding.wz.sk',
+                'description' => 'Nezverejnené články'
+            );
             $this->view = 'articles';
         }
 
@@ -70,6 +82,12 @@ class ClankyController extends Controller
                 $articles = $articleManager->returnPublicArticles($offset);
                 $this->data['articles'] = $validation->statusOfArticles($articles);
 
+                //hlavicka stranky
+                $this->head = array(
+                    'title' => 'Zverejnené články - Strana ' . $parameters[1],
+                    'key_words' => 'coding.wz.sk - články',
+                    'description' => 'Zverejnené články'
+                );
                 $this->view = 'articles';
             }
             //ak nie je zadane cislo strany
@@ -134,15 +152,9 @@ class ClankyController extends Controller
 
             }
 
-            //hlavicka stranky
-            $this->head = array(
-                'title' => $article['title'],
-                'key_words' => $article['key_words'],
-                'description' => $article['description']
-            );
-
             //naplnenie premennych pre sablonu
             $this->data['article'] = $article;
+            $this->data['category'] = $validation->returnCategoryName($article['category']);
             $this->data['user'] = $user['name'];
             //status clanku (publikovany/nepublikovany)
             $status = $validation->statusOfArticles(array($article));
@@ -163,7 +175,12 @@ class ClankyController extends Controller
             //zaznamena navstevu clanku
             $articleManager->newVisit($article['article_id'], $article['visits']);
 
-            //nastavenie sablony
+            //hlavicka stranky
+            $this->head = array(
+                'title' => $article['title'],
+                'key_words' => $article['key_words'],
+                'description' => $article['description']
+            );
             $this->view = 'article';
         }
     }

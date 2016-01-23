@@ -1,3 +1,5 @@
+<p class="category">Kategória -><a href="/kategoria/<?= $article['category'] ?>"> <?= $category ?> </a> </p>
+
 <header>
     <h1><?= $article['title'] ?></h1>
 </header>
@@ -25,6 +27,7 @@
                <?= date("j.n.Y H:i", $comment['date']) ?>
                <?php if(isset($admin)) : ?>
                     <a href="/clanky/<?= $article['url'] ?>/odstranit-komentar/<?= $comment['comment_id'] ?>"
+                       onclick="return confirm('Naozaj chcete odstrániť komentár?');"
                        title="Odstrániť komentár">
                     <i class="fa fa-trash-o fa-fw fa-2x"></i></a>
                 <?php endif ?>

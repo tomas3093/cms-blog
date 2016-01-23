@@ -7,9 +7,6 @@ class EditorController extends Controller
         //editor je pristupny iba pre admina
         $this->checkUser(true);
 
-        $this->head['title'] = 'Editor článkov';
-
-        //vytvorenie instancie spravcu clankov
         $articleManager = new ArticleManager();
         $userManager = new UserManager();
         $validation = new Validation();
@@ -20,6 +17,7 @@ class EditorController extends Controller
             'title' => '',
             'content' => '',
             'url' => '',
+            'category' => '',
             'description' => '',
             'key_words' => '',
             'author' => ''
@@ -29,14 +27,8 @@ class EditorController extends Controller
         if($_POST)
         {
             //ziskanie clanku z $_POST
-            $keys = array('title', 'thumbnail_img', 'content', 'url', 'description', 'key_words', 'author', 'public');
+            $keys = array('title', 'thumbnail_img', 'content', 'url', 'category', 'description', 'key_words', 'author', 'public');
             $article = array_intersect_key($_POST, array_flip($keys));
-
-            //ak bol oznaceny checkbox public, tak nastav clanok ako publikovany
-            if(isset($_POST['public']))
-                $article['public'] = '1';
-            else
-                $article['public'] = '0';
 
             //ak nebol nastaveny nahladovy obrazok, nastav defaultny
             if(empty($_POST['thumbnail_img']))
@@ -60,7 +52,7 @@ class EditorController extends Controller
         }
 
         //ak je zadana URL adresa clanku na jeho editaciu
-        elseif(!empty($parameters[0]))
+        if(!empty($parameters[0]))
         {
             $loadedArticle = $articleManager->returnArticle($parameters[0]);
             if($loadedArticle)
@@ -70,11 +62,29 @@ class EditorController extends Controller
                 $this->createMessage('Článok sa nenašiel', 'warning');
                 $this->redirect('chyba');
             }
-        }
+            $this->data['article'] = $article;
 
-        $this->data['authors'] = $userManager->returnUsers();
-        $this->data['article'] = $article;
-        //sablona
-        $this->view = 'editor';
+            //hlavicka stranky
+            $this->head = array(
+                'title' => 'Editor - ' . $article['title'],
+                'key_words' => 'coding.wz.sk - editor',
+                'description' => 'Editor článkov'
+            );
+            $this->view = 'editor';
+        }
+        //pisanie noveho clanku
+        else
+        {
+            $article['author'] = $userManager->returnUser()['name'];
+            $this->data['article'] = $article;
+
+            //hlavicka stranky
+            $this->head = array(
+                'title' => 'Editor - Nový článok',
+                'key_words' => 'coding.wz.sk - editor',
+                'description' => 'Editor článkov'
+            );
+            $this->view = 'editor';
+        }
     }
 }

@@ -147,6 +147,7 @@ class UzivateliaController extends Controller
             $this->head['title'] = 'Správa užívateľov';
             $this->data['admin'] = $user && $user['admin'];
             $this->data['users'] = $userManager->returnUsers();
+            $this->data['loggedUser'] = $userManager->returnUser();
 
             $index = 0;
             foreach($this->data['users'] as $userData)

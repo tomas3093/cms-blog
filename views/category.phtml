@@ -1,0 +1,42 @@
+<h1> <?= $category ?> </h1>
+
+<?php $articleCounter = 0; #pocitadlo clankov (maximalne 5 clankov na 1 strane) ?>
+<?php foreach ($articles as $article) : ?>
+
+<?php
+        $articleCounter++;
+        if($articleCounter <= 5) : ?>
+                <?php if(($article['public'] == '1') || (($article['public'] == '0') && ($admin == '1'))) : #Ak je clanok publikovany ALEBO je prihlaseny admin A clanok nie je publikovany ?>
+                    <div class="article-box">
+                        <div class="heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="<?= $article['thumbnail_img'] ?>"></a>
+                        </div>
+                        <div class="article">
+                            <h1><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h1>
+                            <?= $article['description'] ?><br>
+                        </div>
+
+                    </div>
+
+                    <div class="clear"></div>
+                <?php endif ?>
+        <?php endif ?>
+
+<?php endforeach ?>
+
+<?php if(isset($pages)) : ?>
+    <p class="pages">
+        <?php
+        for($i = 1; $i <= $pages; $i++) {
+            if($i == $currentPage)
+                echo " <strong><a href='/kategoria/" . $category . "/page/" . $i . "'>" . $i . "</a></strong> ";
+            else
+                echo " <a href='/kategoria/" . $category . "/page/" . $i . "'>" . $i . "</a> ";
+        }
+        ?>
+    </p>
+<?php endif ?>

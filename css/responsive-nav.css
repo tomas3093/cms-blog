@@ -1,0 +1,97 @@
+.js .nav-collapse {
+  display: block;
+  width: 100%;
+  background: #252525;
+  /*clip: rect(0 0 0 0);*/
+  max-height: 0;
+  position: absolute;
+  overflow: hidden;
+  zoom: 1;
+  font-size: 0;
+}
+
+.nav-collapse a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 2em;
+  padding: 0 15px;
+  font-size: 15px;
+}
+
+.logo a {
+  display: none;
+}
+
+.nav-collapse a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nav-collapse ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+.nav-collapse li {
+  width: 100%;
+}
+
+.nav-collapse.opened {
+  max-height: 9999px;
+}
+
+.nav-toggle {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.logo a {
+  margin-right: 65px;
+}
+
+.logo a:hover {
+  background: #252525;
+}
+
+/* FOR DESKTOPS */
+@media screen and (min-width: 780px) {
+
+  .js .nav-collapse {
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  .js .nav-collapse a {
+    line-height: 45px;
+  }
+
+  .js .nav-collapse ul li {
+    width: auto;
+    display: inline-block;
+  }
+
+  .js .nav-collapse.closed {
+    max-height: none;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .logo a {
+    display: block;
+    font-style: oblique;
+  }
+
+}

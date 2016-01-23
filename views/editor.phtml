@@ -7,14 +7,18 @@
     <table>
         <tr>
             <td>Autor</td>
+            <td><strong> <?= $article['author'] ?> </strong></td>
+        </tr>
+
+        <tr>
+            <td>Kategória</td>
             <td>
-                <select name="author" form="editor-form" <?php if(!empty($article['author'])) echo("disabled='true'"); //autor clanku sa uz znova nemoze zmenit ?> >
-                    <?php foreach($authors as $author) : ?>
-                        <option value="<?= $author['name'] ?>"
-                            <?php if($author['name'] == $article['author']) echo("selected='selected'"); //nastavenie default hodnoty ?> >
-                            <?= $author['name'] ?>
-                        </option>
-                    <?php endforeach ?>
+                <select name="category" form="editor-form" required>
+                    <option value="novinky" <?php if($article['category'] == 'novinky') echo 'selected'; ?> >Novinky</option>
+                    <option value="programovanie" <?php if($article['category'] == 'programovanie') echo 'selected'; ?> >Programovanie</option>
+                    <option value="hardware" <?php if($article['category'] == 'hardware') echo 'selected'; ?> >Hardware</option>
+                    <option value="software" <?php if($article['category'] == 'software') echo 'selected'; ?> >Software</option>
+                    <option value="ostatne" <?php if($article['category'] == 'ostatne') echo 'selected'; ?> >Ostatné</option>
                 </select>
             </td>
         </tr>
@@ -39,10 +43,6 @@
             <td><input type="text" name="key_words" value="<?= $article['key_words'] ?>" required><br></td>
         </tr>
 
-        <tr>
-            <td>Publikovať</td>
-            <td><input type="checkbox" name="public"></td>
-        </tr>
     </table>
 
     <textarea name="content"><?= $article['content'] ?></textarea><br>

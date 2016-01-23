@@ -8,7 +8,7 @@ class ArticleManager
     public function returnArticle($url)
     {
         return Database::querryOne('
-            SELECT article_id, thumbnail_img, title, content, url, description, key_words, author, date, public, visits
+            SELECT article_id, thumbnail_img, title, content, url, category, description, key_words, author, date, public, visits
             FROM articles
             WHERE url = ?
         ', array($url));
@@ -41,6 +41,22 @@ class ArticleManager
             ', array(0));
     }
 
+    //vrati vsetky clanky podla kategorie
+    public function returnArticlesByCategory($category, $offset)
+    {
+        if($offset == 0)
+            return Database::querryAll('SELECT article_id, thumbnail_img, title, url, description, author, date, public
+                FROM articles
+                WHERE public = ? AND category = ?
+                ORDER BY article_id DESC
+            ', array(1, $category));
+        else
+            return Database::querryAll('SELECT article_id, thumbnail_img, title, url, description, author, date, public
+                FROM articles
+                WHERE public = ? and category = ?
+                ORDER BY article_id DESC LIMIT 5 OFFSET ?
+            ', array(1, $category, $offset));
+    }
 
     //metoda ulozi novy clanok do databazy, pokial uz toto ID existuje, zmeni existujuci clanok
     public function saveArticle($id, $article)

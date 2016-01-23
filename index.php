@@ -4,7 +4,7 @@ mb_internal_encoding("UTF-8");                              //interne php kodova
 
 function autoloadFunction($class) 
 {
-    #konci nazov triedy na "controler" ? 
+    #konci nazov triedy na "controller" ?
     if(preg_match('/Controller$/', $class))
         require("controllers/" . $class . ".php");
         

@@ -1,3 +1,5 @@
+<h1>Všetky články</h1>
+
 <?php $articleCounter = 0; #pocitadlo clankov (maximalne 5 clankov na 1 strane) ?>
 <?php foreach ($articles as $article) : ?>
 
@@ -11,16 +13,18 @@
                                         <i class="fa fa-user"></i> <?= $article['author'] ?>
                                 </div>
                                 <div class="thumbnail-box">
-                                        <span class="box-center"></span> <a href="clanky/<?= $article['url'] ?>"><img id="articleThumb" src="<?= $article['thumbnail_img'] ?>"></a>
+                                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="<?= $article['thumbnail_img'] ?>"></a>
                                 </div>
                                 <div class="article">
-                                        <h1><a href="clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h1>
+                                        <h1><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h1>
                                         <?= $article['description'] ?><br>
                                         <?php if($admin == '1') : //ak je prihlaseny admin ?>
                                                 <br>
                                                 <?= $article['status'] ?>
                                                 <a href="/editor/<?= $article['url'] ?>"><i class="fa fa-pencil fa-fw"></i> Editovať </a>
-                                                <a href="/clanky/<?= $article['url'] ?>/odstranit"><i class="fa fa-trash-o fa-fw"></i>Odstrániť</a>
+                                                <a href="/clanky/<?= $article['url'] ?>/odstranit"
+                                                   onclick="return confirm('Naozaj chcete odstrániť článok?');"><i class="fa fa-trash-o fa-fw"></i>Odstrániť
+                                                </a>
                                         <?php endif ?>
                                 </div>
                         </div>

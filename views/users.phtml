@@ -15,7 +15,12 @@
                 <td><?= $user['rank'] ?></td>
                 <td><?= $user['articles'] ?></td>
                 <td><?= $user['comments'] ?></td>
-                <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit">Odstrániť</a></td>
+
+                <?php if($user['name'] != $loggedUser['name']) : #zabranenie odstranenia prihlaseneho uzivatela ?>
+                    <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit"
+                           onclick="return confirm('Naozaj chcete odstrániť užívateľa?');">Odstrániť</a>
+                    </td>
+                <?php endif ?>
             </tr>
         <?php endforeach ?>
     <?php endif ?>

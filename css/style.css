@@ -5,8 +5,9 @@ body {
         margin: 0 auto;
 }
 
-header {
-        float: right;
+.category {
+        font-size: 85%;
+        font-style: oblique;
 }
 
 h1 {
@@ -16,6 +17,11 @@ h1 {
 
 a {
         text-decoration: none;
+}
+
+.blue-letter {
+        color: #bbc3ff;
+        font-size: 155%;
 }
 
 #avatar {
@@ -161,11 +167,7 @@ textarea {
 }
 
 /*For desktops*/
-@media (min-width: 780px) {
-
-        header {
-                float: none;
-        }
+@media screen and (min-width: 780px) {
 
         body {
                 width: 100%;
