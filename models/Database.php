@@ -65,11 +65,5 @@ class Database
             "` = ? " . $expression,
             array_merge(array_values($values), $parameters));
     }
-
-    //vrati id posledneho vlozeneho zaznamu
-    public static function getLastId()
-    {
-        return self::$connection->lastInsertId();
-    }
     
 }

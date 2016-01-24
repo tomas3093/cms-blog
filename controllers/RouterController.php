@@ -12,6 +12,8 @@ class RouterController extends Controller
         //zobrazenie uvodnej stranky
         if(empty($parsedURL[0]))
         {
+            $this->createMessage('Stránka je vo výstavbe :/', 'info');
+
             $userManager = new UserManager();
             $this->data['user'] = $userManager->returnUserName();
 
@@ -20,6 +22,7 @@ class RouterController extends Controller
             $this->data['description'] = 'blog, články o programovaní, novinky zo sveta IT, rôzne zaujímavosti';
             $this->data['messages'] = $this->returnMessages();
             //$this->data['topArticles'] = $this->topArticles();
+
 
             $this->view = 'frontPage';
         }

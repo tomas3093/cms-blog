@@ -16,7 +16,7 @@
     <?php foreach($comments as $comment) : ?>
         <div class="comment-block">
             <div class="user">
-                <img id="commentAvatar" src="/img/users/<?= $comment['avatar'] ?>"><br>
+                <img id="commentAvatar" src="/<?= $comment['avatar'] ?>"><br>
                 <strong><a href="/uzivatelia/<?= $comment['author'] ?>"><?= $comment['author'] ?></a></strong><br>
                 <?= $comment['userRank'] ?>
             </div>
@@ -25,7 +25,7 @@
             </div>
             <div class="comment-date">
                <?= date("j.n.Y H:i", $comment['date']) ?>
-               <?php if(isset($admin)) : ?>
+               <?php if($admin == 1) : ?>
                     <a href="/clanky/<?= $article['url'] ?>/odstranit-komentar/<?= $comment['comment_id'] ?>"
                        onclick="return confirm('Naozaj chcete odstrániť komentár?');"
                        title="Odstrániť komentár">

@@ -27,9 +27,24 @@ abstract class Controller
         exit;
     }
 
-    //vytvori spravu
+    //vytvori spravu a prida ikonu
     public function createMessage($message, $style)
     {
+        //pridanie ikony k sprave, podla '$style'
+        switch($style)
+        {
+            case 'info':
+                $message = '<i class="fa fa-info-circle"></i> ' . $message;
+                break;
+            case 'success':
+                $message = '<i class="fa fa-check-circle-o"></i> ' . $message;
+                break;
+            case 'warning':
+                $message = '<i class="fa fa-exclamation-triangle"></i> ' . $message;
+                break;
+        }
+
+        //ulozenie spravy do $_SESSION
         if(isset($_SESSION['messages']))
         {
             $index = sizeof($_SESSION['messages']);

@@ -47,6 +47,9 @@ class ClankyController extends Controller
             $articles = $articleManager->returnUnpublishedArticles();
             $this->data['articles'] = $validation->statusOfArticles($articles);
 
+            if(sizeof($articles) == 0)
+                $this->createMessage('Žiadne články na zobrazenie', 'info');
+
             //hlavicka stranky
             $this->head = array(
                 'title' => 'Nezverejnené články',
@@ -106,6 +109,20 @@ class ClankyController extends Controller
             $this->checkUser(true);
             $articleManager->deleteArticle($parameters[0]);
             $this->createMessage('Článok bol odstránený', 'success');
+            $this->redirect('clanky');
+        }
+
+        //ak je zadane URL pre publikovanie clanku
+        if((!empty($parameters[1]) && $parameters[1] == 'publikovat') && ($parameters[0] != 'page'))
+        {
+            //overi ci clanok z URL existuje
+            if(!$article)
+                $this->redirect('chyba');
+
+            //overi ci je prihlaseny admin
+            $this->checkUser(true);
+            $articleManager->publishArticle($article['url']);
+            $this->createMessage('Článok bol publikovaný', 'success');
             $this->redirect('clanky');
         }
 

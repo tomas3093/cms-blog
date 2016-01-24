@@ -98,6 +98,12 @@ class ArticleManager
         $userManager->getUserData($articleAuthor['author']);
     }
 
+    //publikuje clanok s danou URL adresou
+    public function publishArticle($url)
+    {
+        Database::update('articles', array('public' => '1'), 'WHERE url = ?', array($url));
+    }
+
     //nova navsteva clanku -> zvysi o 1 pocet navstev clanku
     public function newVisit($article_id, $visits)
     {
@@ -109,5 +115,12 @@ class ArticleManager
     public function returnTopArticles()
     {
         return Database::querryAll('SELECT * FROM articles ORDER BY visits DESC LIMIT 5');
+    }
+
+    //vrati IDD posledneho clanku
+    public function returnLastArticleId()
+    {
+        $id = Database::querryOne("SELECT article_id FROM articles ORDER BY article_id DESC LIMIT 1");
+        return $id[0];
     }
 }

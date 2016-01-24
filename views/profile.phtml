@@ -1,5 +1,4 @@
-<h1>Profil užívateľa</h1>
-<h2><?= $user ?></h2>
+<h1>Užívateľský profil</h1>
 
 <?php if($user == $loggedUser['name']) { //zobrazenie nastaveni prihlaseneho uzivatela ?>
     <h3>Nastavenia</h3>
@@ -8,10 +7,9 @@
     <!-- vlastnost enctype - specifies which content-type to use when submitting the form -->
     <form action="" method="post" enctype="multipart/form-data">
         <h4>Profilový obrázok</h4>
-        <img id="avatar" src="/img/users/<?= $avatar ?>"><br>
+        <img id="avatar" src="/<?= $avatar ?>"><br><br>
         <i class="fa fa-upload"></i>
-        <input type="file" name="fileToUpload">
-        <p>Povolené formáty sú JPG, PNG, JPEG, GIF a max. veľkosť 0,5 MB</p>
+        <input type="file" size="32" name="image_field">
         <input type="submit" value="Nahrať obrázok" name="uploadImage">
     </form>
 
@@ -22,9 +20,20 @@
          <input type="radio" name="sex" value="female" <?php if($sex == 'žena') echo('checked'); ?> >Žena
 
          <h4>Zmena hesla</h4>
-         Staré heslo <input type="password" name="old"><br>
-         Nové heslo <input type="password" name="password"><br>
-         Nové heslo znovu <input type="password" name="password2">
+         <table>
+             <tr>
+                 <td>Staré heslo</td>
+                 <td><input type="password" name="old"></td>
+             </tr>
+             <tr>
+                 <td>Nové heslo</td>
+                 <td><input type="password" name="password"></td>
+             </tr>
+             <tr>
+                 <td>Heslo znovu</td>
+                 <td><input type="password" name="password2"></td>
+             </tr>
+         </table>
 
          <h4>Zmena e-mailu</h4>
          <i class="fa fa-envelope-o fa-fw"></i><input type="email" name="email" value="<?= $email ?>" placeholder="E-mail">
@@ -36,9 +45,11 @@
 
 <?php } else { //zobrazenie prehladu profilu ineho pouzivatela ?>
 
+    <h2><?= $user ?></h2>
+
     <table>
         <tr>
-            <td><img id="avatar" src="/img/users/<?= $avatar ?>"></td>
+            <td><img id="avatar" src="/<?= $avatar ?>"></td>
         </tr>
 
         <tr>

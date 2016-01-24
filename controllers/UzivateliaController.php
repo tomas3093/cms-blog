@@ -61,42 +61,48 @@ class UzivateliaController extends Controller
         //ak bol odoslany formular pre upload profiloveho obrazka
         if(isset($_POST['uploadImage']))
         {
+            $imageUpload = new upload($_FILES['image_field']);
+
+            $targetDirectory = 'img/users/' . $user['name'] . '/';
+            $filePath = $targetDirectory . 'user_avatar.gif';
+
             try
             {
-                //adresar pre ulozenie obrazkov
-                $targetDirectory = 'img/users/' . $user['name'] . '/';
-                $targetFile = $targetDirectory . basename($_FILES['fileToUpload']['name']);
-                $imageFileType = pathinfo($targetFile, PATHINFO_EXTENSION);
-                $targetFile = $targetDirectory . $user['user_id'] . '.' . $imageFileType;
-
                 //ak neexistuje uzivatelov adresar, vytvor ho
                 if(!file_exists($targetDirectory))
                     mkdir($targetDirectory, '0777', true);
 
-                //ak bol nahraty obrazok
-                if(!empty($_FILES['fileToUpload']['tmp_name']))
+                //ak bol obrazok nahraty
+                if ($imageUpload->uploaded)
                 {
-                    //skontroluje ci subor je naozaj obrazok
-                    $check = getimagesize($_FILES['fileToUpload']['tmp_name']);
-                    if ($check == false)
-                        throw new UserError('Súbor nie je obrázok');
+                    $imageUpload->allowed = array('image/*');           //povolene formaty
+                    $imageUpload->mime_check = true;                    //kontrola formatu zapnuta
+                    $imageUpload->file_new_name_body = 'user_avatar';   //novy nazov suboru
+                    $imageUpload->image_resize = true;                  //zmensenie
+                    $imageUpload->image_convert = 'gif';                //konvertovanie na gif
+                    $imageUpload->image_x = 100;                        //vysledna sirka 100px
+                    $imageUpload->image_ratio_y = true;                 //vyska: auto
+
+                    //zmazanie existujuceho avataru
+                    if(file_exists($filePath))
+                        unlink($filePath);
+
+                    $imageUpload->process($targetDirectory);            //uloz vysledny obrazok
+
+                    //ak bol obrazok ulozeny
+                    if ($imageUpload->processed)
+                    {
+                        //uloz avatar do databazy
+                        $userManager->updateUserData($user['name'], array('avatar' => $filePath));
+                        $imageUpload->clean();
+                    }
+                    else
+                        throw new UserError($imageUpload->error);
+
+                    $this->createMessage('Váš obrázok bol úspešne uložený.', 'success');
                 }
                 else
-                    throw new UserError('Nenahrali ste žiadny obrázok');
-
-                if($_FILES['fileToUpload']['size'] > 512000)
-                    throw new UserError('Maximálna veľkosť obrázka je 0,5 MB.');
-
-                if($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif')
-                    throw new UserError('Nepovolený formát obrázku1');
-
-                if(move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $targetFile))
-                    $this->createMessage('Váš obrázok bol úspešne uložený.', 'success');
-                else
-                    throw new UserError('Pri nahrávaní obrázka sa vyskytla chyba.');
-
-                //zapisanie avataru do databazy
-                $userManager->updateUserData($user['name'], array('avatar' => $user['name'] . '/' . $user['user_id'] . '.' . $imageFileType));
+                    throw new UserError('Obrázok sa nenahral');
             }
             catch(UserError $error)
             {

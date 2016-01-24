@@ -64,7 +64,7 @@ class Validation
         foreach($articles as $article)
         {
             if($article['public'] == '0')
-                $articles[$step]['status'] = '<i class="fa fa-eye-slash"></i> Nepublikovaný';
+                $articles[$step]['status'] = '<a href="' . $article['url'] . '/publikovat" title="Publikovať"><i class="fa fa-eye-slash"></i> Nepublikovaný</a>';
             else
                 $articles[$step]['status'] = '<i class="fa fa-eye"></i> Publikovaný';
             $step += 1;
