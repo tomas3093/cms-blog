@@ -12,10 +12,8 @@ class UserManager
     }
 
     //registracia noveho uzivatela do systemu
-    public function register($name, $password, $password2, $email, $year)
+    public function register($name, $password, $password2, $email)
     {
-        if($year != date('Y'))
-            throw new UserError('Chybne vyplnený antispam.');
         if($password != $password2)
             throw new UserError('Heslo sa nezhoduje.');
 

@@ -61,20 +61,26 @@ abstract class Controller
     {
         $noticeManager = new NoticeManager();
 
-        //oznamy z databazy
-        $messages = $noticeManager->returnNotices();
-
+        //ak su ulozene spravy v SESSION
         if(isset($_SESSION['messages']))
         {
+            //oznamy z databazy
+            $notices = $noticeManager->returnNotices();
+            //spravy zo SESSION
             $messages = $_SESSION['messages'];
+            //ulozenie oznamov a sprav do '$messages'
+            $messages = array_merge($messages, $notices);
 
-            //zmazanie session, aby sa neobjavovali stare spravy
+            //zmazanie SESSION, aby sa neobjavovali stare spravy
             unset($_SESSION['messages']);
 
         }
+        else
+            //oznamy z databazy
+            $messages = $noticeManager->returnNotices();
 
         if(!empty($messages))
-            return $messages;
+            return array_reverse($messages);        //vrati pole v opacnom poradi (navrchu budu oznamy, dole spravy)
         else
             return array();
     }

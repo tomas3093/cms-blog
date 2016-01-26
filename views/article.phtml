@@ -44,8 +44,10 @@
         <h3>Pridať komentár</h3>
         <form action="#" method="post">
             <input type="text" name="article_id" value="<?= $article['article_id'] ?>" hidden>
+            <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden>
+            <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden>
             <input type="text" name="author" value="<?= $user ?>" hidden>
-            <input type="text" name="year" placeholder="Antispam - zadajte aktuálny rok" required>
+            <p> <i><?= $captcha['captcha'] ?></i> <input type="text" name="captchaAnswer" required> </p>
             <textarea name="comment"><?php if(isset($_POST['comment'])) echo(htmlspecialchars($_POST['comment'])) ?></textarea><br>
             <input type="submit" value="Odoslať komentár">
         </form>

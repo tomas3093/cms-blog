@@ -1,0 +1,22 @@
+fieldset {
+    width: 65%;
+}
+
+legend {
+    font-size: 20px;
+}
+
+label .field {
+    text-align: right;
+    float: left;
+    font-weight: bold;
+}
+
+fieldset input {
+    float: left;
+}
+
+fieldset p {
+    clear: both;
+    padding: 5px;
+}

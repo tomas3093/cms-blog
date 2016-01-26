@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/form-style.css" type="text/css">
         <link rel="stylesheet" href="/css/responsive-nav.css">
         <script src="/js/responsive-nav.js"></script>
     </head>
@@ -30,7 +31,7 @@
 
         <section>
             <?php foreach($messages as $message) : ?>
-                <p class="<?= $message[1] ?>"><?= $message[0] ?></p>
+                <div class="<?= $message[1] ?>"><?= $message[0] ?></div>
             <?php endforeach ?>
         </section>
 
@@ -57,7 +58,7 @@
             <footer>
                 <p>
                     design <strong>&amp;</strong> code | Tomáš Blázy <br>
-                    &copy;<?= date("Y"); ?> <i>v1.04</i>
+                    &copy;<?= date("Y"); ?> <i>v1.05</i>
                     <a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a>
                 </p>
             </footer>

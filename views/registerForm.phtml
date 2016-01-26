@@ -1,36 +1,17 @@
-<h1>Registrácia</h1>
-
 <form method="post">
 
-    <table>
-        <tr>
-            <td>Meno</td>
-            <td><input type="text" name="name" required></td>
-        </tr>
+    <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden>
+    <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden>
 
-        <tr>
-            <td>Heslo</td>
-            <td><input type="password" name="password" placeholder="Minimálna dĺžka hesla je 5 znakov" required></td>
-        </tr>
+    <fieldset>
+        <legend>Registrácia</legend>
+        <p><label class="field" for="Meno">Meno:</label><input type="text" name="name" required> </p>
+        <p><label class="field" for="Heslo">Heslo:</label><input type="password" name="password" placeholder="Minimálna dĺžka hesla je 5 znakov" required> </p>
+        <p><label class="field" for="Heslo znova">Heslo znova:</label><input type="password" name="password2" required> </p>
+        <p><label class="field" for="Email">E-mail (nepovinné):</label><input type="email" name="email"> </p>
+        <p><label class="field" for="Captcha"><i><?= $captcha['captcha'] ?></i></label><input type="text" name="captchaAnswer" required> </p>
+    </fieldset>
 
-        <tr>
-            <td>Heslo znova</td>
-            <td><input type="password" name="password2" required></td>
-        </tr>
-
-        <tr>
-            <td>E-mail (nepovinné)</td>
-            <td><input type="email" name="email"></td>
-        </tr>
-
-        <tr>
-            <td>Antispam</td>
-            <td><input type="text" name="year" placeholder="zadajte aktuálny rok" required></td>
-        </tr>
-
-        <tr>
-            <td><input type="submit" value="Registrovať"></td>
-        </tr>
-    </table>
+    <input type="submit" value="Registrovať">
 
 </form>

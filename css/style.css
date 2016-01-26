@@ -149,21 +149,30 @@ textarea {
 }
 
 .warning {
-        border: 1px solid #f86063;
-        background: #f86063;
-        padding: 3px;
+        background: #f8f8f8;
+        color: #ff6a6a;
+        border: solid 2px #ff6a6a;
+        font-weight: bold;
+        line-height: 25px;
+        padding: 5px;
 }
 
 .success {
-        border: 1px solid #5df89a;
-        background: #5df89a;
-        padding: 3px;
+        background: #f8f8f8;
+        color: limegreen;
+        border: solid 2px limegreen;
+        font-weight: bold;
+        line-height: 25px;
+        padding: 5px;
 }
 
 .info {
-        border: 1px solid #6E9CF8;
-        background: #6E9CF8;
-        padding: 3px;
+        background: #f8f8f8;
+        color: #435fd7;
+        border: solid 2px #435fd7;
+        font-weight: bold;
+        line-height: 25px;
+        padding: 5px;
 }
 
 /*For desktops*/

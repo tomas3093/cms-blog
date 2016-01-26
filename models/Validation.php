@@ -78,7 +78,7 @@ class Validation
         if(empty($url))
             throw new UserError('Vyplňte titulok!');
 
-        $url = strip_tags($url);                                                    //odstrani HTPL a PHP tagy
+        $url = strip_tags($url);                                                    //odstrani HTML a PHP tagy
         $url = mb_strtolower($url);                                                 //zmeni velke pismena na male
         $url = trim($url);                                                          //odstrani biele znaky
         $url = str_replace(Array(" ", "_"), "-", $url);                             //nahradi medzery a podtrzitka pomlckami
@@ -107,5 +107,33 @@ class Validation
             throw new UserError('Používateľské meno obsahuje nepovolené znaky alebo je v nesprávnom tvare!');
 
         return $username;
+    }
+
+    //vygeneruje antispam otazku
+    public function returnCaptcha()
+    {
+        $digits = array('nula', 'jeden', 'dva', 'tri', 'štyri', 'päť', 'šesť', 'sedem', 'osem', 'deväť');
+        $number1 = rand(0, 9);
+        $number2 = rand(0, 9);
+        $captcha = $digits[$number1] . ' + ' . $digits[$number2] . ' = ';
+
+        $values = array(
+            'number1' => $number1,
+            'number2' => $number2,
+            'captcha' => $captcha
+        );
+
+        return $values;
+    }
+
+    //zisti ci je spravne zodpovedana antispam otazka
+    public function checkCaptcha($number1, $number2, $answer)
+    {
+        $result = $number1 + $number2;
+
+        if($result == $answer)
+            return true;
+        else
+            return false;
     }
 }

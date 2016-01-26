@@ -151,7 +151,7 @@ class ClankyController extends Controller
             if($_POST)
             {
                 //ak bol spravne vyplneny antispam
-                if($_POST['year'] == date('Y'))
+                if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $_POST['captchaAnswer']))
                 {
                     //vyber udajov z $_POST a ich ulozenie do premennej $comment
                     $keys = array('article_id', 'comment', 'author');
@@ -178,6 +178,8 @@ class ClankyController extends Controller
             $this->data['article']['status'] = $status[0]['status'];
             //komentare k clanku
             $this->data['comments'] = $commentManager->returnCommentsById($article['article_id']);
+            //antispam otazka
+            $this->data['captcha'] = $validation->returnCaptcha();
 
             //priradenie avataru uzivatela do komentarov
             $i = 0;

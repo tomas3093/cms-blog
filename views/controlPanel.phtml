@@ -3,50 +3,56 @@
 
 <?php if($admin == '1') : #ak je prihlaseny admin ?>
 
-    <ul>
-        <li><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></li>
-        <li><a href="/clanky/unpublished"><i class="fa fa-pencil-square-o"></i> Rozpísané články</a></li>
-        <li><a href="/clanky"><i class="fa fa-tasks"></i> Správa článkov</a></li>
-        <li><a href="/uzivatelia"><i class="fa fa-users"></i> Správa užívatelov</a></li>
-        <li><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></li>
-    </ul>
+    <fieldset>
+        <legend>Možnosti</legend>
+        <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
+        <p><a href="/clanky/unpublished"><i class="fa fa-pencil-square-o"></i> Rozpísané články</a></p>
+        <p><a href="/clanky"><i class="fa fa-tasks"></i> Správa článkov</a></p>
+        <p><a href="/uzivatelia"><i class="fa fa-users"></i> Správa užívatelov</a></p>
+        <p><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></p>
+        <p><a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a></p>
+    </fieldset>
 
 
-    <h2>Oznamy</h2>
-    <table>
-        <?php foreach($notices as $notice) : ?>
-            <tr>
-                <td><?= $notice['notice'] ?></td>
-                <td><?= $notice['type'] ?></td>
-                <td>
-                    <a href="/panel/<?= $notice['notice_id'] ?>/odstranit"
-                        onclick="return confirm('Naozaj chcete odstrániť oznam?');"><i class="fa fa-trash-o fa-fw"></i></a>
-                </td>
-            </tr>
-        <?php endforeach ?>
-    </table>
+    <fieldset>
+        <legend>Oznamy</legend>
+        <table>
+            <?php foreach($notices as $notice) : ?>
+                <tr>
+                    <td><?= $notice['notice'] ?></td>
+                    <td><?= $notice['type'] ?></td>
+                    <td>
+                        <a href="/panel/<?= $notice['notice_id'] ?>/odstranit"
+                            onclick="return confirm('Naozaj chcete odstrániť oznam?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </table>
 
-    <p>
-        <form action="" method="post" id="notice-form">
-            Nový oznam
-            <input type="text" name="noticeField" required>
-            <select name="noticeStyle" form="notice-form" required>
-                <option value="info">Info</option>
-                <option value="success">Úspech</option>
-                <option value="warning">Varovanie</option>
-            </select>
-            <input type="submit" value="Vložiť oznam">
-        </form>
-    </p>
+        <p>
+            <form action="" method="post" id="notice-form">
+                Nový oznam
+                <input type="text" name="noticeField" required>
+                <select name="noticeStyle" form="notice-form" required>
+                    <option value="info">Info</option>
+                    <option value="success">Úspech</option>
+                    <option value="warning">Varovanie</option>
+                </select>
+                <input type="submit" value="Vložiť oznam">
+            </form>
+        </p>
+    </fieldset>
 
 <?php endif ?>
 
 <?php if($admin == '2') : #ak je prihlaseny redaktor ?>
 
-    <ul>
-        <li><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></li>
-        <li><a href="/clanky"><i class="fa fa-tasks"></i> Moje články</a></li>
-    </ul>
+    <fieldset>
+        <legend>Možnosti</legend>
+        <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
+        <p><a href="/clanky"><i class="fa fa-tasks"></i> Moje články</a></p>
+        <p><a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a></p>
+    </fieldset>
 
 <?php endif ?>
 
@@ -102,5 +108,3 @@
         <td><?= $email ?></td>
     </tr>
 </table>
-<br>
-<a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a>
