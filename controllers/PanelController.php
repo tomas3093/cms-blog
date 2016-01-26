@@ -11,6 +11,7 @@ class PanelController extends Controller
         $this->head['title'] = 'Ovládací panel';
 
         $userManager = new UserManager();
+        $noticeManager = new NoticeManager();
         $validation = new Validation();
 
         //zadane URL pre odhlasenie
@@ -20,8 +21,30 @@ class PanelController extends Controller
             $this->redirect('prihlasenie');
         }
 
-        //data pre sablonu
+        //ak bol odoslany formular s oznameniami
+        if($_POST)
+        {
+            if(isset($_POST['noticeField']) && isset($_POST['noticeStyle']))
+            {
+                $noticeManager->addNotice($_POST['noticeField'], $_POST['noticeStyle']);
+                $this->createMessage('Oznam bol úspešne uložený', 'success');
+            }
+        }
+
+        //zadane URL pre odstranenie oznamu
+        if(!empty($parameters[1]) && $parameters[1] == 'odstranit')
+        {
+            //odstran oznam s danym ID
+            $noticeManager->removeNotice($parameters[0]);
+            $this->redirect('panel');
+        }
+
         $user = $userManager->returnUser();
+
+        //oznamy
+        $this->data['notices'] = $noticeManager->returnNotices();
+
+        //data pre sablonu
         $this->data['admin'] = $user['admin'];
         $this->data['userRank'] = $validation->returnUserRank($user['admin']);
         $this->data['user'] = $user['name'];

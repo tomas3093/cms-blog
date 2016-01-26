@@ -12,8 +12,6 @@ class RouterController extends Controller
         //zobrazenie uvodnej stranky
         if(empty($parsedURL[0]))
         {
-            $this->createMessage('Stránka je vo výstavbe :/', 'info');
-
             $userManager = new UserManager();
             $this->data['user'] = $userManager->returnUserName();
 

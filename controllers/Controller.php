@@ -56,15 +56,25 @@ abstract class Controller
         }
     }
     
-    //vrati aktualne spravy zo session
+    //vrati aktualne spravy zo session a oznamy z databazy
     public static function returnMessages()
     {
+        $noticeManager = new NoticeManager();
+
+        //oznamy z databazy
+        $messages = $noticeManager->returnNotices();
+
         if(isset($_SESSION['messages']))
         {
             $messages = $_SESSION['messages'];
-            unset($_SESSION['messages']);                   //zmazanie session, aby sa neobjavovali stare spravy
-            return $messages;
+
+            //zmazanie session, aby sa neobjavovali stare spravy
+            unset($_SESSION['messages']);
+
         }
+
+        if(!empty($messages))
+            return $messages;
         else
             return array();
     }

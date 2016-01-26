@@ -11,6 +11,34 @@
         <li><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></li>
     </ul>
 
+
+    <h2>Oznamy</h2>
+    <table>
+        <?php foreach($notices as $notice) : ?>
+            <tr>
+                <td><?= $notice['notice'] ?></td>
+                <td><?= $notice['type'] ?></td>
+                <td>
+                    <a href="/panel/<?= $notice['notice_id'] ?>/odstranit"
+                        onclick="return confirm('Naozaj chcete odstrániť oznam?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+
+    <p>
+        <form action="" method="post" id="notice-form">
+            Nový oznam
+            <input type="text" name="noticeField" required>
+            <select name="noticeStyle" form="notice-form" required>
+                <option value="info">Info</option>
+                <option value="success">Úspech</option>
+                <option value="warning">Varovanie</option>
+            </select>
+            <input type="submit" value="Vložiť oznam">
+        </form>
+    </p>
+
 <?php endif ?>
 
 <?php if($admin == '2') : #ak je prihlaseny redaktor ?>
