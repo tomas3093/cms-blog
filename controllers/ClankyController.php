@@ -156,6 +156,8 @@ class ClankyController extends Controller
                     //vyber udajov z $_POST a ich ulozenie do premennej $comment
                     $keys = array('article_id', 'comment', 'author');
                     $comment = array_intersect_key($_POST, array_flip($keys));
+                    //pridanie emoticonov
+                    $comment['comment'] = $commentManager->addEmoticons($comment['comment']);
                     //ulozenie komentara do DB
                     $commentManager->saveComment($comment, $user['name']);
                     $this->createMessage('Váš komentár bol úspešne pridaný', 'success');

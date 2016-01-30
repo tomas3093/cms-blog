@@ -49,6 +49,15 @@
             <input type="text" name="author" value="<?= $user ?>" hidden>
             <p> <i><?= $captcha['captcha'] ?></i> <input type="text" name="captchaAnswer" required> </p>
             <textarea name="comment"><?php if(isset($_POST['comment'])) echo(htmlspecialchars($_POST['comment'])) ?></textarea><br>
+
+            <p>
+                <img src="/img/smiles/big-smile.gif" title=":D">
+                <img src="/img/smiles/smile.gif" title=":)">
+                <img src="/img/smiles/wink.gif" title=";)">
+                <img src="/img/smiles/sad.gif" title=":(">
+                <img src="/img/smiles/surprised.gif" title=":o">
+            </p>
+
             <input type="submit" value="Odoslať komentár">
         </form>
     </section>

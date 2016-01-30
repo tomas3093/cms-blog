@@ -117,7 +117,7 @@ class ArticleManager
         return Database::querryAll('SELECT * FROM articles ORDER BY visits DESC LIMIT 5');
     }
 
-    //vrati IDD posledneho clanku
+    //vrati ID posledneho clanku
     public function returnLastArticleId()
     {
         $id = Database::querryOne("SELECT article_id FROM articles ORDER BY article_id DESC LIMIT 1");

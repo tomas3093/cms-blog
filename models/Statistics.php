@@ -13,15 +13,6 @@ class Statistics
         ');
     }
 
-    public function returnUsersByComments()
-    {
-        return Database::querryAll('
-          SELECT user_id, name, avatar, admin, registration_date, last_visit, comments, articles, sex, email
-          FROM users
-          ORDER BY comments DESC
-        ');
-    }
-
     public function returnArticlesByVisits()
     {
         return Database::querryAll('

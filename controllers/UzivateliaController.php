@@ -119,6 +119,30 @@ class UzivateliaController extends Controller
             $this->redirect('uzivatelia');
         }
 
+        //ak je zadana URL pre zmenu opravnenia uzivatela
+        if(!empty($parameters[1]) && $parameters[1] == 'zmenit-opravnenie')
+        {
+            $this->checkUser(true);
+            $requiredUser = $userManager->returnUserInfo($parameters[0]);
+            //ak ma uzivatel hodnost 'Clen', zmen ho na 'Redaktor'
+            if($requiredUser['admin'] == 0)
+            {
+                $value = array('admin' => 2);
+                $userManager->updateUserData($parameters[0], $value);
+                $this->createMessage('Užívateľovi ' . $parameters[0] . ' bola priradená hodnosť Redaktor', 'success');
+                $this->redirect('uzivatelia');
+            }
+
+            //ak ma uzivatel hodnost 'Redaktor', zmen ho na 'Clen'
+            if($requiredUser['admin'] == 2)
+            {
+                $value = array('admin' => 0);
+                $userManager->updateUserData($parameters[0], $value);
+                $this->createMessage('Užívateľovi ' . $parameters[0] . ' bola priradená hodnosť Člen', 'success');
+                $this->redirect('uzivatelia');
+            }
+        }
+
         //ak je zadane URL profilu uzivatela
         if(!empty($parameters[0]))
         {

@@ -83,7 +83,8 @@ class UserManager
         if(isset($_SESSION['user']))
         {
             $userName = $_SESSION['user'][1];
-            $string = "Prihlaseny: <strong>" . $userName . "</strong><br><br><a href='/panel'><i class='fa fa-clone'></i> Ovládací panel</a><br>"
+            $userAvatar = $_SESSION['user']['avatar'];
+            $string = "Prihlaseny: <strong>" . $userName . "</strong><p><img src='/" . $userAvatar . "'></p><a href='/panel'><i class='fa fa-clone'></i> Ovládací panel</a><br>"
                 . "</strong><a href='/panel/odhlasit'><i class='fa fa-sign-out'></i> Odhlásiť</a>";
         }
         else
@@ -111,7 +112,7 @@ class UserManager
         ', array($user));
     }
 
-    //vymaze pouzivatela z databazy
+    //vymaze uzivatela z databazy
     public function deleteUser($user)
     {
         Database::querry('DELETE FROM users WHERE name = ?', array($user));

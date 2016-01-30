@@ -38,6 +38,7 @@ class RouterController extends Controller
 
             //predanie premennych do hlavnej sablony
             $this->data['user'] = $userManager->returnUserName();
+            $this->data['loggedUser'] = $userManager->returnUser();
             $this->data['title'] = $this->controller->head['title'];
             $this->data['key_words'] = $this->controller->head['key_words'];
             $this->data['description'] = $this->controller->head['description'];

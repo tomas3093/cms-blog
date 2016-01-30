@@ -2,10 +2,8 @@
 
 <table>
     <tr>
-        <td>Uzivatel</td>
-        <td>Hodnosť</td>
-        <td>Články</td>
-        <td>Komentáre</td>
+        <th>Uzivatel</th>
+        <th>Hodnosť</th>
         <td></td>
     </tr>
     <?php if($admin) : ?>
@@ -13,12 +11,13 @@
             <tr>
                 <td><a href="uzivatelia/<?= $user['name'] ?>"><?= $user['name'] ?></a></td>
                 <td><?= $user['rank'] ?></td>
-                <td><?= $user['articles'] ?></td>
-                <td><?= $user['comments'] ?></td>
 
                 <?php if($user['name'] != $loggedUser['name']) : #zabranenie odstranenia prihlaseneho uzivatela ?>
-                    <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit"
-                           onclick="return confirm('Naozaj chcete odstrániť užívateľa?');">Odstrániť</a>
+                    <td><a href="uzivatelia/<?= $user['name'] ?>/zmenit-opravnenie" title="Zmeniť oprávnenie"
+                           onclick="return confirm('Naozaj chcete zmeniť oprávnenie užívateľa?');"><i class="fa fa-user"></i></a>
+                    </td>
+                    <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit" title="Odstrániť užívateľa"
+                           onclick="return confirm('Naozaj chcete odstrániť užívateľa?');"><i class="fa fa-trash-o fa-fw"></i></a>
                     </td>
                 <?php endif ?>
             </tr>
