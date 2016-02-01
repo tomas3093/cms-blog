@@ -49,8 +49,13 @@ class SpravaController extends Controller
         if(!empty($parameters[1]) && $parameters[1] == 'zobrazit')
         {
             $message = $messageManager->returnMessage($parameters[0]);
+            //ak sprava existuje a otvara ju prijimatel, alebo odosielatel
             if($message && (($message['sender'] == $loggedUser['name']) || ($message['recipient'] == $loggedUser['name'])))
             {
+                //pri prvom otvoreni, oznac spravu ako precitanu
+                if($message['unread'] == 1)
+                    $messageManager->readMessage($message['message_id']);
+
                 $this->head['title'] = 'Správa - ' . $message['subject'];
                 $this->data['message'] = $message;
 

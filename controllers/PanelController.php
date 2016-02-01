@@ -13,13 +13,37 @@ class PanelController extends Controller
 
         $userManager = new UserManager();
         $noticeManager = new NoticeManager();
-        $messageManager = new MessageManager();
 
         //zadane URL pre odhlasenie
         if(!empty($parameters[0]) && $parameters[0] == 'odhlasit')
         {
             $userManager->logOut();
             $this->redirect('prihlasenie');
+        }
+
+        //zadane URL pre zobrazenie rozpisanych clankov redaktora alebo admina
+        if(!empty($parameters[0]) && $parameters[0] == 'moje-clanky')
+        {
+            $loggedUser = $userManager->returnUser();
+            //ak je prihlaseny redaktor alebo admin
+            if(($loggedUser['admin'] == 1) || ($loggedUser['admin'] == 2))
+            {
+                $articleManager = new ArticleManager();
+                $unpublishedArticles = $articleManager->returnUnpublishedArticles();
+
+                //vybratie iba tych nepublikovanych clankov, ktorych autor je momentalne prihlaseny uzivatel
+                $userArticles = array();
+                foreach($unpublishedArticles as $article)
+                {
+                    if($article['author'] == $loggedUser['name'])
+                        $userArticles[] = $article;
+                }
+
+                $this->data['userArticles'] = $userArticles;
+                $this->head['title'] = 'Moje články';
+
+                $this->view = 'myArticles';
+            }
         }
 
         //ak bol odoslany formular s oznameniami
@@ -40,18 +64,25 @@ class PanelController extends Controller
             $this->redirect('panel');
         }
 
-        $user = $userManager->returnUser();
+        //zadane URL pre zobrazenie control panelu
+        if(empty($parameters[0]))
+        {
+            $user = $userManager->returnUser();
 
-        //oznamy
-        $this->data['notices'] = $noticeManager->returnNotices();
+            //oznamy
+            $this->data['notices'] = $noticeManager->returnNotices();
 
-        //data pre sablonu
-        $this->data['admin'] = $user['admin'];
-        $this->data['user'] = $user['name'];
-        $this->data['receivedMessages'] = $messageManager->returnReceivedMessages($user['name']);
-        $this->data['sentMessages'] = $messageManager->returnSentMessages($user['name']);
+            //data pre sablonu
+            $this->data['admin'] = $user['admin'];
+            $this->data['user'] = $user['name'];
 
-        //nastavenie sablony
-        $this->view = 'controlPanel';
+            $messageManager = new MessageManager();
+            $this->data['receivedMessages'] = $messageManager->returnReceivedMessages($user['name']);
+            $this->data['sentMessages'] = $messageManager->returnSentMessages($user['name']);
+
+            //nastavenie sablony
+            $this->view = 'controlPanel';
+        }
+
     }
 }

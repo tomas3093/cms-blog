@@ -15,5 +15,6 @@
     <file url="file://$PROJECT_DIR$/views/frontPage.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/views/message.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/views/messageForm.phtml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/views/myArticles.phtml" charset="UTF-8" />
   </component>
 </project>

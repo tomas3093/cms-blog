@@ -7,6 +7,7 @@
         <legend>Možnosti</legend>
         <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
         <p><a href="/clanky/unpublished"><i class="fa fa-pencil-square-o"></i> Rozpísané články</a></p>
+        <p><a href="/panel/moje-clanky"><i class="fa fa-pencil-square-o"></i> Moje články</a></p>
         <p><a href="/clanky"><i class="fa fa-tasks"></i> Správa článkov</a></p>
         <p><a href="/uzivatelia"><i class="fa fa-users"></i> Správa užívatelov</a></p>
         <p><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></p>
@@ -50,11 +51,12 @@
     <fieldset>
         <legend>Možnosti</legend>
         <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
-        <p><a href="/clanky"><i class="fa fa-tasks"></i> Moje články</a></p>
+        <p><a href="/panel/moje-clanky"><i class="fa fa-tasks"></i> Moje články</a></p>
         <p><a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a></p>
     </fieldset>
 
 <?php endif ?>
+
 
 <fieldset>
     <legend>Správy</legend>
@@ -73,7 +75,13 @@
                     <tr>
                         <td><?= date("j.n.Y", $message['date']) ?></td>
                         <td><a href="/uzivatelia/<?= $message['sender'] ?>"><?= $message['sender'] ?></a></td>
-                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['message'] ?></a></td>
+
+                        <?php if($message['unread'] == 1) : #ak je sprava neprecitana, zobraz ju tucnym pismom ?>
+                            <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><strong><?= $message['subject'] ?></strong></a></td>
+                        <?php else : #ak je sprava precitana ?>
+                            <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['subject'] ?></a></td>
+                        <?php endif ?>
+
                         <td>
                             <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
                                onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
@@ -99,7 +107,7 @@
                     <tr>
                         <td><i><?= date("j.n.Y", $message['date']) ?><i/></td>
                         <td><a href="/uzivatelia/<?= $message['recipient'] ?>"><?= $message['recipient'] ?></a></td>
-                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['message'] ?></a></td>
+                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['subject'] ?></a></td>
                         <td>
                             <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
                                onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
@@ -111,5 +119,4 @@
             <p><i>Žiadne odoslané správy</i></p>
         <?php endif ?>
     </p>
-
 </fieldset>

@@ -1,0 +1,29 @@
+<h1>Moje články</h1>
+
+<?php foreach ($userArticles as $article) : ?>
+
+    <div class="article-box">
+        <div class="heading">
+            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+            <i class="fa fa-user"></i> <?= $article['author'] ?>
+        </div>
+
+        <div class="thumbnail-box">
+            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+        </div>
+
+        <div class="article">
+            <h1><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h1>
+            <?= $article['description'] ?>
+
+            <p>
+                <a href="/editor/<?= $article['url'] ?>"><i class="fa fa-pencil fa-fw"></i> Editovať </a>
+                <a href="/clanky/<?= $article['url'] ?>/odstranit"
+                   onclick="return confirm('Naozaj chcete odstrániť článok?');"><i class="fa fa-trash-o fa-fw"></i>Odstrániť
+                </a>
+            </p>
+
+        </div>
+    </div>
+
+<?php endforeach ?>

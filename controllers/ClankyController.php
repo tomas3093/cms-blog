@@ -105,9 +105,16 @@ class ClankyController extends Controller
             if(!$article)
                 $this->redirect('chyba');
 
-            //overi ci je prihlaseny admin
-            $this->checkUser(true);
-            $articleManager->deleteArticle($parameters[0]);
+            //ak je clanok nepublikovany a je prihlaseny autor tohoto clanku
+            if(($article['public'] == 0) && ($article['author'] == $user['name']))
+                $articleManager->deleteArticle($parameters[0]);
+            else
+            {
+                //overi ci je prihlaseny admin
+                $this->checkUser(true);
+                $articleManager->deleteArticle($parameters[0]);
+            }
+
             $this->createMessage('Článok bol odstránený', 'success');
             $this->redirect('clanky');
         }
