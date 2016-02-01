@@ -56,10 +56,60 @@
 
 <?php endif ?>
 
-<h2>Správy</h2>
-<table>
-    <tr>
-        <td>Prijaté</td>
-        <td>Odoslané</td>
-    </tr>
-</table>
+<fieldset>
+    <legend>Správy</legend>
+    <p><a href="/sprava/vytvorit"><i class="fa fa-envelope-o"></i> Nová správa</a></p>
+
+    <p>
+        <strong>Prijaté</strong>
+        <?php if(!empty($receivedMessages)) : ?>
+            <table>
+                <tr>
+                    <th>Čas</th>
+                    <th>Od</th>
+                    <th>Správa</th>
+                </tr>
+                <?php foreach($receivedMessages as $message) : ?>
+                    <tr>
+                        <td><?= date("j.n.Y", $message['date']) ?></td>
+                        <td><a href="/uzivatelia/<?= $message['sender'] ?>"><?= $message['sender'] ?></a></td>
+                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['message'] ?></a></td>
+                        <td>
+                            <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
+                               onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        <?php else: ?>
+            <p><i>Žiadne prijaté správy</i></p>
+        <?php endif ?>
+    </p>
+
+    <p>
+        <strong>Odoslané</strong>
+        <?php if(!empty($sentMessages)) : ?>
+            <table>
+                <tr>
+                    <th>Čas</th>
+                    <th>Komu</th>
+                    <th>Správa</th>
+                </tr>
+                <?php foreach($sentMessages as $message) : ?>
+                    <tr>
+                        <td><i><?= date("j.n.Y", $message['date']) ?><i/></td>
+                        <td><a href="/uzivatelia/<?= $message['recipient'] ?>"><?= $message['recipient'] ?></a></td>
+                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['message'] ?></a></td>
+                        <td>
+                            <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
+                               onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach ?>
+            </table>
+        <?php else: ?>
+            <p><i>Žiadne odoslané správy</i></p>
+        <?php endif ?>
+    </p>
+
+</fieldset>

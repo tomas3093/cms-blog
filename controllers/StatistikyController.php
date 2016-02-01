@@ -9,7 +9,6 @@ class StatistikyController extends Controller
         $this->head['title'] = 'Štatistiky webu';
 
         $this->data['usersByArticles'] = $statistics->returnUsersByArticles();
-        $this->data['usersByComments'] = $statistics->returnUsersByComments();
         $this->data['articlesByVisits'] = $statistics->returnArticlesByVisits();
 
         $this->view = 'statistics';

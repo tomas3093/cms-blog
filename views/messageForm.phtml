@@ -1,0 +1,25 @@
+<!--autocomplete script-->
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+    $(function() {
+        var sourceData = [<?= $autocompleteSource ?>];
+        $("#prijemca").autocomplete({
+            source: function( request, response ) {
+                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                response( $.grep(sourceData, function( item ){
+                    return matcher.test( item );
+                }) );
+            }
+        });
+    });
+</script>
+
+<br>
+<form action="" method="post">
+    <fieldset>
+        <legend>Nová správa</legend>
+        <p><input type="text" name="recipient" id="prijemca" placeholder="Príjemca" required></p>
+        <p><input type="text" name="subject" placeholder="Predmet" required></p>
+        <p><textarea name="message" id="sprava"></textarea></p>
+        <p><input type="submit" value="Odoslať správu"></p>
+    </fieldset>
+</form>

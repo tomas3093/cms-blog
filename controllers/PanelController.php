@@ -7,12 +7,13 @@ class PanelController extends Controller
     {
         //do control panela maju pristup len prihlaseny uzivatelia
         $this->checkUser();
+
         //hlavicka stranky
         $this->head['title'] = 'Ovládací panel';
 
         $userManager = new UserManager();
         $noticeManager = new NoticeManager();
-        $validation = new Validation();
+        $messageManager = new MessageManager();
 
         //zadane URL pre odhlasenie
         if(!empty($parameters[0]) && $parameters[0] == 'odhlasit')
@@ -46,15 +47,9 @@ class PanelController extends Controller
 
         //data pre sablonu
         $this->data['admin'] = $user['admin'];
-        $this->data['userRank'] = $validation->returnUserRank($user['admin']);
         $this->data['user'] = $user['name'];
-        $this->data['avatar'] = $user['avatar'];
-        $this->data['registrationDate'] = $user['registration_date'];
-        $this->data['lastVisit'] = $user['last_visit'];
-        $this->data['comments'] = $user['comments'];
-        $this->data['articles'] = $user['articles'];
-        $this->data['sex'] = $user['sex'];
-        $this->data['email'] = $user['email'];
+        $this->data['receivedMessages'] = $messageManager->returnReceivedMessages($user['name']);
+        $this->data['sentMessages'] = $messageManager->returnSentMessages($user['name']);
 
         //nastavenie sablony
         $this->view = 'controlPanel';
