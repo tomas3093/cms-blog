@@ -32,8 +32,9 @@ class KategoriaController extends Controller
                     //zisti pocet clankov, a pripravi pocet stran
                     $articles = $articleManager->returnArticlesByCategory($parameters[0], 0);   //vsetky clanky z danej kategorie
                     $countArticles = sizeof($articles);
-                    if($countArticles == 0)
-                        $this->redirect('chyba');
+
+                    if(sizeof($articles) == 0)
+                        $this->createMessage('Žiadne články na zobrazenie', 'info');
 
                     $modulo = $countArticles % 5;
                     if($modulo == 0)
@@ -67,8 +68,9 @@ class KategoriaController extends Controller
 
                 //zisti pocet clankov, a pripravi pocet stran
                 $countArticles = sizeof($articles);
-                if($countArticles == 0)
-                    $this->redirect('chyba');
+
+                if(sizeof($articles) == 0)
+                    $this->createMessage('Žiadne články na zobrazenie', 'info');
 
                 $modulo = $countArticles % 5;
                 if($modulo == 0)

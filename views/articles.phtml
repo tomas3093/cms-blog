@@ -8,7 +8,7 @@
         if($articleCounter <= 5) : ?>
                 <?php if(($article['public'] == '1') || (($article['public'] == '0') && ($admin == '1'))) : #Ak je clanok publikovany ALEBO je prihlaseny admin A clanok nie je publikovany ?>
                         <div class="article-box">
-                                <div class="heading">
+                                <div class="article-heading">
                                         <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
                                         <i class="fa fa-user"></i> <?= $article['author'] ?>
                                 </div>

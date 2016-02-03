@@ -1,16 +1,14 @@
-<p class="category">Kategória -><a href="/kategoria/<?= $article['category'] ?>"> <?= $category ?> </a> </p>
+<p class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/kategoria/<?= $article['category'] ?>"> <?= $category ?> </a> </p>
 
-<header>
+<section id="article-box">
     <h1><?= $article['title'] ?></h1>
-</header>
 
-<section>
     <?= $article['content'] ?>
     <p><?= $article['status'] ?> <?= date("j.n.Y", $article['date']) ?></p>
     Autor: <a href="/uzivatelia/<?= $article['author'] ?>"><?= $article['author'] ?></a>
 </section>
 
-<section>
+<section id="comments-box">
     <p><strong>Komentáre</strong></p>
 
     <?php foreach($comments as $comment) : ?>

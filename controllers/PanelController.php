@@ -39,6 +39,10 @@ class PanelController extends Controller
                         $userArticles[] = $article;
                 }
 
+                //ak nie su ziadne clanky na zobrazenie
+                if(sizeof($userArticles) == 0)
+                    $this->createMessage('Žiadne články na zobrazenie', 'info');
+
                 $this->data['userArticles'] = $userArticles;
                 $this->head['title'] = 'Moje články';
 

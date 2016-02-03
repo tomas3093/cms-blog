@@ -22,6 +22,9 @@ class ClankyController extends Controller
             $articles = $articleManager->returnPublicArticles(0);
             $this->data['articles'] = $validation->statusOfArticles($articles);
 
+            if(sizeof($articles) == 0)
+                $this->createMessage('Žiadne články na zobrazenie', 'info');
+
             //zisti pocet clankov, a pripravi pocet stran
             $countArticles = sizeof($articles);
             $modulo = $countArticles % 5;
@@ -84,6 +87,9 @@ class ClankyController extends Controller
                 //vratenie clankov s pozadovanym offsetom
                 $articles = $articleManager->returnPublicArticles($offset);
                 $this->data['articles'] = $validation->statusOfArticles($articles);
+
+                if(sizeof($articles) == 0)
+                    $this->createMessage('Žiadne články na zobrazenie', 'info');
 
                 //hlavicka stranky
                 $this->head = array(
@@ -149,9 +155,13 @@ class ClankyController extends Controller
         if(!empty($parameters[0]) && $parameters[0] != 'page' && ($parameters[0] != 'unpublished'))
         {
             //ak nebol clanok na zadanej URL najdeny
-            //alebo ak uzivatel nie je admin a clanok nie je publikovany
-            //presmeruj na chybove hlasenie
-            if(!$article || (($user['admin'] != '1') && ($article['public'] == '0')))
+            if(!$article)
+                $this->redirect('chyba');
+            //ak uzivatel nie je admin ALEBO redaktor A clanok nie je publikovany
+            if($article['public'] == 0 && $user['admin'] == 0)
+                $this->redirect('chyba');
+            //ak je uzivatel redaktor A nie je autorom daneho clanku
+            if(($user['admin'] == 2) && ($user['name'] != $article['author']) && ($article['public'] == 0))
                 $this->redirect('chyba');
 
             //ak bol odoslany komentar
