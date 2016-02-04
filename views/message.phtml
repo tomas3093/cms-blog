@@ -1,7 +1,10 @@
-<h1>Správa</h1>
-
-<i><?= date("j.n.Y H:i", $message['date']) ?></i>
-<h2><?= $message['subject'] ?></h2>
-<p>Od: <?= $message['sender'] ?></p>
-<p>Komu: <?= $message['recipient'] ?></p>
-<p><?= $message['message'] ?></p>
+<fieldset>
+    <legend>Správa</legend>
+    <p>
+        (<i><?= date("j.n.Y H:i", $message['date']) ?></i>)<br>
+        Od: <a href="/uzivatelia/<?= $message['sender'] ?>"> <?= $message['sender'] ?></a><br>
+        Komu: <a href="/uzivatelia/<?= $message['recipient'] ?>"> <?= $message['recipient'] ?></a><br>
+        Predmet: <strong><?= $message['subject'] ?></strong>
+    </p>
+    <p><?= $message['message'] ?></p>
+</fieldset>

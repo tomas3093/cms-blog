@@ -134,7 +134,7 @@ textarea {
         display: block;
         background-color: rgb(243, 243, 243);
         border-top: solid 2px rgba(128, 128, 128, 0.55);
-        padding: 5px 2px 5px 2px;
+        padding: 5px 2px;
 }
 
 .comment-block .user {
@@ -152,6 +152,7 @@ textarea {
 }
 
 .comment-block .comment-date {
+        clear: both;
         text-align: right;
         font-size: 80%;
         font-style: italic;

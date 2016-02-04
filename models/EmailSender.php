@@ -12,12 +12,4 @@ class EmailSender
         if(!mb_send_mail($recipient, $subject, $message, $header))
             throw new UserError('Email sa nepodarilo odoslať.');
     }
-    
-    
-    public function sendWithAntispam($year, $recipient, $subject, $message, $from)
-    {
-        if($year != date('Y'))
-            throw new UserError('Chybne vyplnený antispam.');
-        $this->send($recipient, $subject, $message, $from);
-    }
 }

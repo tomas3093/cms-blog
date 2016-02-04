@@ -53,6 +53,8 @@ class PanelController extends Controller
         //ak bol odoslany formular s oznameniami
         if($_POST)
         {
+            //overenie ci je prihlaseny admin; nie su osetrene vstupy
+            $this->checkUser(true);
             if(isset($_POST['noticeField']) && isset($_POST['noticeStyle']))
             {
                 $noticeManager->addNotice($_POST['noticeField'], $_POST['noticeStyle']);
@@ -63,6 +65,8 @@ class PanelController extends Controller
         //zadane URL pre odstranenie oznamu
         if(!empty($parameters[1]) && $parameters[1] == 'odstranit')
         {
+            //overenie ci je prihlaseny admin
+            $this->checkUser(true);
             //odstran oznam s danym ID
             $noticeManager->removeNotice($parameters[0]);
             $this->redirect('panel');

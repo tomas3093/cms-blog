@@ -37,7 +37,7 @@ class SpravaController extends Controller
             $message = $messageManager->returnMessage($parameters[0]);
             if($message)
             {
-                $messageManager->deleteMessage($parameters[0]);
+                $messageManager->deleteMessage($parameters[0], $loggedUser);
                 $this->createMessage('Správa bola odstránená', 'success');
                 $this->redirect('panel');
             }
@@ -70,7 +70,7 @@ class SpravaController extends Controller
         {
             $sender = $userManager->returnUser();
             $recipient = strip_tags($_POST['recipient']);
-            $subject = strip_tags($_POST['subject']);
+            $subject = htmlspecialchars($_POST['subject']);
             $message = htmlspecialchars($_POST['message']);
 
             try

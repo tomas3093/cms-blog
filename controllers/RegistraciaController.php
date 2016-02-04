@@ -12,13 +12,16 @@ class RegistraciaController extends Controller
 
             if($_POST)
             {
+                //odstranenie skodliveho kodu z antispam pola
+                $captchaAnswer = strip_tags($_POST['captchaAnswer']);
+
                 try
                 {
                     //validacia zadaneho uzivatelskeho mena
                     $validUsername = $validation->checkUsername($_POST['name']);
 
                     //ak bol spravne vyplneny antispam
-                    if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $_POST['captchaAnswer']))
+                    if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $captchaAnswer))
                     {
                         $userManager->register($validUsername, $_POST['password'], $_POST['password2'], $_POST['email']);
                         $this->createMessage('Boli ste úspešne zaregistrovaný.', 'success');

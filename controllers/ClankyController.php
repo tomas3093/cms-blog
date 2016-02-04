@@ -167,12 +167,16 @@ class ClankyController extends Controller
             //ak bol odoslany komentar
             if($_POST)
             {
+                //odstranenie skodliveho kodu z antispam pola
+                $captchaAnswer = strip_tags($_POST['captchaAnswer']);
+
                 //ak bol spravne vyplneny antispam
-                if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $_POST['captchaAnswer']))
+                if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $captchaAnswer))
                 {
-                    //vyber udajov z $_POST a ich ulozenie do premennej $comment
-                    $keys = array('article_id', 'comment', 'author');
-                    $comment = array_intersect_key($_POST, array_flip($keys));
+                    $comment['article_id'] = $_POST['article_id'];
+                    $comment['author'] = $_POST['author'];
+                    $comment['comment'] = htmlspecialchars($_POST['comment']);
+
                     //pridanie emoticonov
                     $comment['comment'] = $commentManager->addEmoticons($comment['comment']);
                     //ulozenie komentara do DB

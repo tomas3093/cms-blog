@@ -22,7 +22,7 @@ class MessageManager
     public function returnMessage($message_id)
     {
         return Database::querryOne('
-            SELECT message_id, sender, recipient, subject, message, date, unread
+            SELECT message_id, sender, recipient, subject, message, date, unread, sender_del, recipient_del
             FROM messages
             WHERE message_id = ?
         ', array($message_id));
@@ -37,26 +37,53 @@ class MessageManager
     //vrati vsetky prijate spravy uzivatela
     public function returnReceivedMessages($recipient)
     {
-        return Database::querryAll('SELECT message_id, sender, recipient, subject, message, date, unread
+        return Database::querryAll('SELECT message_id, sender, recipient, subject, message, date, unread, sender_del, recipient_del
                 FROM messages
-                WHERE recipient = ?
+                WHERE recipient = ? AND recipient_del = ?
                 ORDER BY message_id DESC
-                ', array($recipient));
+                ', array($recipient, 0));
     }
 
     //vrati vsetky odoslane spravy uzivatela
     public function returnSentMessages($sender)
     {
-        return Database::querryAll('SELECT message_id, sender, recipient, subject, message, date, unread
+        return Database::querryAll('SELECT message_id, sender, recipient, subject, message, date, unread, sender_del, recipient_del
                 FROM messages
-                WHERE sender = ?
+                WHERE sender = ? AND sender_del = ?
                 ORDER BY message_id DESC
-                ', array($sender));
+                ', array($sender, 0));
     }
 
-    //vymaze spravu
-    public function deleteMessage($message_id)
+    //vymaze spravu z uzivatelovho control panela
+    public function deleteMessage($message_id, $user)
     {
-        Database::querry('DELETE FROM messages WHERE message_id = ?', array($message_id));
+        $message = $this->returnMessage($message_id);
+
+        //ak je uzivatel odosielatel
+        if($message['sender'] == $user['name'])
+        {
+            if($message['recipient_del'] == 1)
+            {
+                Database::querry('DELETE FROM messages WHERE message_id = ?', array($message_id));
+            }
+            else
+            {
+                $values = array('sender_del' => 1);
+                Database::update('messages', $values, 'WHERE message_id = ?', array($message_id));
+            }
+        }
+        //ak je uzivatel prijimatel
+        else
+        {
+            if($message['sender_del'] == 1)
+            {
+                Database::querry('DELETE FROM messages WHERE message_id = ?', array($message_id));
+            }
+            else
+            {
+                $values = array('recipient_del' => 1);
+                Database::update('messages', $values, 'WHERE message_id = ?', array($message_id));
+            }
+        }
     }
 }

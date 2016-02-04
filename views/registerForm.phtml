@@ -5,11 +5,11 @@
 
     <fieldset>
         <legend>Registrácia</legend>
-        <p><label class="field" for="Meno">Meno:</label><input type="text" name="name" required> </p>
-        <p><label class="field" for="Heslo">Heslo:</label><input type="password" name="password" placeholder="Minimálna dĺžka hesla je 5 znakov" required> </p>
-        <p><label class="field" for="Heslo znova">Heslo znova:</label><input type="password" name="password2" required> </p>
-        <p><label class="field" for="Email">E-mail (nepovinné):</label><input type="email" name="email"> </p>
-        <p><label class="field" for="Captcha"><i><?= $captcha['captcha'] ?></i></label><input type="text" name="captchaAnswer" required> </p>
+        <p><label class="field" for="name">Meno:</label><input type="text" name="name" required> </p>
+        <p><label class="field" for="password">Heslo:</label><input type="password" name="password" placeholder="Minimálna dĺžka hesla je 5 znakov" required> </p>
+        <p><label class="field" for="password2">Heslo znova:</label><input type="password" name="password2" required> </p>
+        <p><label class="field" for="email">E-mail (nepovinné):</label><input type="email" name="email"> </p>
+        <p><label class="field" for="captchaAnswer"><i><?= $captcha['captcha'] ?></i></label><input type="text" name="captchaAnswer" required> </p>
     </fieldset>
 
     <input type="submit" value="Registrovať">
