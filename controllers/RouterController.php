@@ -7,23 +7,31 @@ class RouterController extends Controller
     
     public function process($parameters)
     {
+        $userManager = new UserManager();
+        $articleManager = new ArticleManager();
+
         $parsedURL = $this->parseURL($parameters[0]);          //predanie URL do funkcie
 
         //zobrazenie uvodnej stranky
         if(empty($parsedURL[0]))
         {
-            $userManager = new UserManager();
-            $this->data['user'] = $userManager->returnUserName();
+            $frontPageContentManager = new frontPageContentManager();
 
+            $this->data['user'] = $userManager->returnUserName();
             $this->data['title'] = 'Coding - Programovanie, Novinky, Software, Hardware';
             $this->data['key_words'] = 'Programovanie, Novinky, Software, Hardware, Blog, Spravodajstvo';
             $this->data['description'] = 'blog, články o programovaní, novinky zo sveta IT, rôzne zaujímavosti';
             $this->data['messages'] = $this->returnMessages();
-            //$this->data['topArticles'] = $this->topArticles();
-
+            $this->data['shortMessages'] = $frontPageContentManager->returnShortMessages();
+            $this->data['novinkyCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('novinky');
+            $this->data['programovanieCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('programovanie');
+            $this->data['hardwareCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('hardware');
+            $this->data['softwareCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('software');
+            $this->data['ostatneCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('ostatne');
 
             $this->view = 'frontPage';
         }
+        //zobrazenie zakladneho layoutu
         else
         {
             $controllerClass = $this->camelCase(array_shift($parsedURL)) . 'Controller';    //spracovanie URL na parametre, volanie pozadovaneho kontroleru
@@ -34,7 +42,6 @@ class RouterController extends Controller
                 $this->redirect('chyba');                               //ak neexistuje, presmeruj na chybove hlasenie
 
             $this->controller->process($parsedURL);                 //spracovanie ostatnych parametrov vo vnorenom kontroleri
-            $userManager = new UserManager();
 
             //predanie premennych do hlavnej sablony
             $this->data['user'] = $userManager->returnUserName();
@@ -43,7 +50,7 @@ class RouterController extends Controller
             $this->data['key_words'] = $this->controller->head['key_words'];
             $this->data['description'] = $this->controller->head['description'];
             $this->data['messages'] = $this->returnMessages();
-            $this->data['topArticles'] = $this->topArticles();
+            $this->data['topArticles'] = $articleManager->returnTopArticles();
 
             $this->view = 'layout';         //nastavenie hlavnej sablony
         }

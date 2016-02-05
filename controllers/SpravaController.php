@@ -42,7 +42,7 @@ class SpravaController extends Controller
                 $this->redirect('panel');
             }
             else
-                $this->createMessage('Správa neexistuje', 'warning');
+                $this->redirect('chyba');
         }
 
         //ak je zadane URL na zobrazenie spravy
@@ -62,7 +62,7 @@ class SpravaController extends Controller
                 $this->view = 'message';
             }
             else
-                $this->createMessage('Správa neexistuje', 'warning');
+                $this->redirect('chyba');
         }
 
         //ak bol odoslany formular pre odoslanie spravy
@@ -91,6 +91,12 @@ class SpravaController extends Controller
             {
                 $this->createMessage($error->getMessage(), 'warning');
             }
+        }
+
+        //zadane URL bez parametrov
+        if(empty($parameters))
+        {
+            $this->redirect('chyba');
         }
     }
 }

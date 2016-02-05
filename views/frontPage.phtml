@@ -38,61 +38,125 @@
 
 <div id="content">
 
-    <section class="updates">
-        <h1>MVC CMS system <strong>v.1.07</strong></h1>
-        <h2>Updates</h2>
+    <h1>Novinky</h1>
+    <div class="row">
+        <?php foreach($novinkyCategoryArticles as $article) : ?>
 
-        <p>
-            <table>
-                <tr><th>Features</th><th></th></tr>
-                <tr><td>uzivatelsky profil, avatar, pocet komentarov, uzivatelske nastavenia</td><td>✔✔</td></tr>
-                <tr><td>komentare k clankom</td><td>✔✔</td></tr>
-                <tr><td>nahladove obrazky clankov, defaultny obrazok</td><td>✔✔</td></tr>
-                <tr><td>datum pridania clanku, autor clanku</td><td>✔✔</td></tr>
-                <tr><td>zobrazenie/skrytie clanku</td><td>✔✔</td></tr>
-                <tr><td>pocet clankov uzivatela</td><td>✔✔</td></tr>
-                <tr><td>upload vlastneho avataru</td><td>✔✔</td></tr>
-                <tr><td>validacia pola URL v editore</td><td>✔✔</td></tr>
-                <tr><td>validacia mien uzivatelov pri registracii</td><td>✔✔</td></tr>
-                <tr><td>pocet zobrazeni clanku</td><td>✔✔</td></tr>
-                <tr><td>vypis clankov rozdeleny na viacere strany</td><td>✔✔</td></tr>
-                <tr><td>potvrdzovacie dialogy pre zmazanie</td><td>✔✔</td></tr>
-                <tr><td>responzivny dizajn</td><td>✔✔</td></tr>
-                <tr><td>kategoriaController pre vypis clankov v danej kategorii</td><td>✔✔</td></tr>
-                <tr><td>odstranit ponuku autorov clankov v editore</td><td>✔✔</td></tr>
-                <tr><td>zobrazenie cesty k clanku (kategorie)</td><td>✔✔</td></tr>
-                <tr><td>upload nahladovych obrazkov clankov</td><td>✔✔</td></tr>
-                <tr><td>oznamy</td><td>✔✔</td></tr>
-                <tr><td>lepsi antispam pri komentaroch</td><td>✔✔</td></tr>
-                <tr><td>sprava uzivatelov - mazanie uctov, zmena opravneni</td><td>✔✔</td></tr>
-                <tr><td>smajlici v komentaroch</td><td>✔✔</td></tr>
-                <tr><td>avatar prihlaseneho uzivatela na bocnom paneli</td><td>✔✔</td></tr>
-                <tr><td>posielanie sprav medzi uzivatelmi</td><td>✔✔</td></tr>
-                <tr><td>precitane a neprecitane spravy</td><td>✔✔</td></tr>
-                <tr><td>'Moje clanky' v control paneli autorov</td><td>✔✔</td></tr>
-                <tr><td>uvodna stranka</td><td>✔-</td></tr>
-                <tr><td>dizajn formularov a tabuliek</td><td>-</td></tr>
-                <tr><td>osetrenie vsetkych vstupov od uzivatelov</td><td>-</td></tr>
-                <tr><td>statistiky navstevnosti, clankov, uzivatelov</td><td>-</td></tr>
-                <tr><td>vyhladavanie clankov podla klucovych slov (google engine)</td><td>-</td></tr>
-            </table>
-        </p>
+            <div class="col-1-3">
+                <div class="article-box">
+                    <div class="article-heading">
+                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                    </div>
+                    <div class="thumbnail-box">
+                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+                    </div>
+                    <div class="article">
+                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                        <?= $article['description'] ?><br>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
 
-        <p>
-            <table>
-                <tr><th>Known bugs</th><th></th></tr>
-                <tr><td>zobrazenie viacerych sprav naraz</td><td>fixed ✔✔</td></tr>
-                <tr><td>po zmene uzivatelskych nastaveni sa neaktualizuje session</td><td>fixed ✔✔</td></tr>
-                <tr><td>pri nahrani avataru s rovnakym menom suboru vypise chybu</td><td>fixed ✔✔</td></tr>
-                <tr><td>ak sa vymaze clanok, tak sa neaktualizuje pocet clankov uzivatela</td><td>fixed ✔✔</td></tr>
-                <tr><td>ak sa vymaze komentar, tak sa neaktualizuje pocet komentarov uzivatela</td><td>fixed ✔✔</td></tr>
-                <tr><td>zmiznutie oznamu ak je v SESSION sprava</td><td>fixed ✔✔</td></tr>
-                <tr><td>nefunkcny email formular</td><td>fixed ✔✔</td></tr>
+        <?php endforeach ?>
+    </div><!-- /.row -->
 
-            </table>
-        </p>
+    <h1>Programovanie</h1>
+    <div class="row">
+        <?php foreach($programovanieCategoryArticles as $article) : ?>
 
-    </section>
+            <div class="col-1-3">
+                <div class="article-box">
+                    <div class="article-heading">
+                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                    </div>
+                    <div class="thumbnail-box">
+                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+                    </div>
+                    <div class="article">
+                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                        <?= $article['description'] ?><br>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        <?php endforeach ?>
+    </div><!-- /.row -->
+
+    <h1>Hardware</h1>
+    <div class="row">
+        <?php foreach($hardwareCategoryArticles as $article) : ?>
+
+            <div class="col-1-3">
+                <div class="article-box">
+                    <div class="article-heading">
+                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                    </div>
+                    <div class="thumbnail-box">
+                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+                    </div>
+                    <div class="article">
+                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                        <?= $article['description'] ?><br>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        <?php endforeach ?>
+    </div><!-- /.row -->
+
+    <h1>Software</h1>
+    <div class="row">
+        <?php foreach($softwareCategoryArticles as $article) : ?>
+
+            <div class="col-1-3">
+                <div class="article-box">
+                    <div class="article-heading">
+                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                    </div>
+                    <div class="thumbnail-box">
+                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+                    </div>
+                    <div class="article">
+                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                        <?= $article['description'] ?><br>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        <?php endforeach ?>
+    </div><!-- /.row -->
+
+    <h1>Ostatné</h1>
+    <div class="row">
+        <?php foreach($ostatneCategoryArticles as $article) : ?>
+
+            <div class="col-1-3">
+                <div class="article-box">
+                    <div class="article-heading">
+                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                    </div>
+                    <div class="thumbnail-box">
+                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+                    </div>
+                    <div class="article">
+                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                        <?= $article['description'] ?><br>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        <?php endforeach ?>
+    </div><!-- /.row -->
 
     <footer>
         <p>
@@ -104,6 +168,8 @@
 </div>
 
 <!-- javascript --------------------------------------------------------------------------->
+
+
 <script>
     //responsive menu customizable options
     var nav = responsiveNav(".nav-collapse", { // Selector

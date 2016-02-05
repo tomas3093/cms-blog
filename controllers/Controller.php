@@ -85,13 +85,6 @@ abstract class Controller
             return array();
     }
 
-    //vrati najcitanejsie clanky
-    public function topArticles()
-    {
-        $articleManager = new ArticleManager();
-        return $articleManager->returnTopArticles();
-    }
-
     //overuje ci je uzivatel prihlaseny, pripadne ci je administrator - pomocou nepovinneho parametera
     public function checkUser($admin = false)
     {

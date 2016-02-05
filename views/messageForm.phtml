@@ -1,5 +1,5 @@
 <!--autocomplete script-->
-<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+<script type="text/javascript">
     $(function() {
         var sourceData = [<?= $autocompleteSource ?>];
         $("#prijemca").autocomplete({
@@ -20,6 +20,6 @@
         <p><input type="text" name="recipient" id="prijemca" placeholder="Príjemca" required></p>
         <p><input type="text" name="subject" placeholder="Predmet" required></p>
         <p><textarea name="message" id="sprava"></textarea></p>
-        <p><input type="submit" value="Odoslať správu"></p>
+        <p><input type="messageSubmit" value="Odoslať správu"></p>
     </fieldset>
 </form>

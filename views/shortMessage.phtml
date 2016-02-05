@@ -1,0 +1,12 @@
+<h1><?= $shortMessage['title'] ?></h1>
+
+<p>
+    (<i><?= date("j.n.Y H:i", $shortMessage['date']) ?></i>)<br>
+    <?= $shortMessage['content'] ?><br><br>
+
+    <?php if($loggedUser['admin'] == 1) : ?>
+        <a href="/shortnews/<?= $shortMessage['id'] ?>/odstranit"
+           onclick="return confirm('Naozaj chcete odstrániť krátku správu?');"><i class="fa fa-trash-o fa-fw"></i>Odstrániť
+        </a>
+    <?php endif ?>
+</p>

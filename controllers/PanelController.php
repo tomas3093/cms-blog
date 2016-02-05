@@ -8,17 +8,36 @@ class PanelController extends Controller
         //do control panela maju pristup len prihlaseny uzivatelia
         $this->checkUser();
 
-        //hlavicka stranky
-        $this->head['title'] = 'Ovládací panel';
-
         $userManager = new UserManager();
         $noticeManager = new NoticeManager();
+        $frontPageContentManager = new frontPageContentManager();
 
         //zadane URL pre odhlasenie
         if(!empty($parameters[0]) && $parameters[0] == 'odhlasit')
         {
             $userManager->logOut();
             $this->redirect('prihlasenie');
+        }
+
+        //zadane URL pre pridanie kratkej spravy
+        if(!empty($parameters[0]) && $parameters[0] == 'kratka-sprava')
+        {
+            //overi ci je prihlaseny admin
+            $this->checkUser(true);
+
+            //ak bol odoslany formular pre kratke spravy
+            if(isset($_POST['shortMessageSubmit']))
+            {
+                $title = htmlspecialchars($_POST['title']);
+                $content = htmlspecialchars($_POST['content']);
+
+                $frontPageContentManager->addNewShortMessage($title, $content);
+                $this->createMessage('Krátka správa bola úspešne pridaná', 'success');
+                $this->redirect('panel');
+            }
+
+            $this->head['title'] = 'Krátka správa';
+            $this->view = 'shortNewsForm';
         }
 
         //zadane URL pre zobrazenie rozpisanych clankov redaktora alebo admina
@@ -50,8 +69,8 @@ class PanelController extends Controller
             }
         }
 
-        //ak bol odoslany formular s oznameniami
-        if($_POST)
+        //ak bol odoslany formular s novym oznamom
+        if(isset($_POST['newNoticeSubmit']))
         {
             //overenie ci je prihlaseny admin; nie su osetrene vstupy
             $this->checkUser(true);
@@ -59,6 +78,7 @@ class PanelController extends Controller
             {
                 $noticeManager->addNotice($_POST['noticeField'], $_POST['noticeStyle']);
                 $this->createMessage('Oznam bol úspešne uložený', 'success');
+                $this->redirect('panel');
             }
         }
 
@@ -88,8 +108,9 @@ class PanelController extends Controller
             $this->data['receivedMessages'] = $messageManager->returnReceivedMessages($user['name']);
             $this->data['sentMessages'] = $messageManager->returnSentMessages($user['name']);
 
-            //nastavenie sablony
+            //nastavenie sablony a title
             $this->view = 'controlPanel';
+            $this->head['title'] = 'Ovládací panel';
         }
 
     }

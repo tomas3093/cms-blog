@@ -1,0 +1,17 @@
+<h1>Krátke správy</h1>
+
+<?php foreach($shortMessages as $shortMessage) : ?>
+
+    <p>
+        (<i><?= date("j.n.Y H:i", $shortMessage['date']) ?></i>)
+        <h2><a href="/shortnews/<?= $shortMessage['id'] ?>/zobrazit"><?= $shortMessage['title'] ?></a></h2>
+        <?= $shortMessage['content'] ?><br>
+
+        <?php if($loggedUser['admin'] == 1) : ?>
+            <a href="/shortnews/<?= $shortMessage['id'] ?>/odstranit"
+               onclick="return confirm('Naozaj chcete odstrániť krátku správu?');"><i class="fa fa-trash-o fa-fw"></i>Odstrániť
+            </a><br><br>
+        <?php endif ?>
+    </p>
+
+<?php endforeach ?>

@@ -136,4 +136,13 @@ class Validation
         else
             return false;
     }
+
+    //skrati retazec na zadany pocet znakov a prida na koniec '...'
+    public function stringLimitLenght($string, $maxLenght)
+    {
+        if (strlen($string) > $maxLenght)
+            $string = substr($string, 0, $maxLenght) . '...';
+
+        return $string;
+    }
 }
