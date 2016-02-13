@@ -7,9 +7,6 @@ class RegistraciaController extends Controller
             $userManager = new UserManager();
             $validation = new Validation();
 
-            //hlavicka stranky
-            $this->head['title'] = 'Registrácia';
-
             if($_POST)
             {
                 //odstranenie skodliveho kodu z antispam pola
@@ -34,12 +31,16 @@ class RegistraciaController extends Controller
                 catch(UserError $error)
                 {
                     $this->createMessage($error->getMessage(), 'warning');
-                    $this->redirect('registracia');
                 }
             }
-            //vytvorenie antispam otazky
-            $this->data['captcha'] = $validation->returnCaptcha();
-            //nastavenie sablony
-            $this->view = 'registerForm';
+            //ak bol odoslany formular, zachovanie vyplneneho mena
+            $this->data['name'] = '';
+            if(isset($_POST['name']))
+                $this->data['name'] = $_POST['name'];
+
+            $this->data['captcha'] = $validation->returnCaptcha();  //antispam otazka
+
+            $this->head['title'] = 'Registrácia';   //title
+            $this->view = 'registerForm';           //sablona
         }
 }

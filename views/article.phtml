@@ -1,20 +1,20 @@
-<p class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/kategoria/<?= $article['category'] ?>"> <?= $category ?> </a> </p>
+<div class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/kategoria/<?= $article['category'] ?>"> <?= $category ?> </a> </div>
 
-<section id="article-box">
+<div id="article-box">
     <h1><?= $article['title'] ?></h1>
 
     <?= $article['content'] ?>
     <p><?= $article['status'] ?> <?= date("j.n.Y", $article['date']) ?></p>
     Autor: <a href="/uzivatelia/<?= $article['author'] ?>"><?= $article['author'] ?></a>
-</section>
+</div>
 
-<section id="comments-box">
-    <p><strong>Komentáre</strong></p>
+<div id="comments-box">
+    <h3>Komentáre</h3>
 
     <?php foreach($comments as $comment) : ?>
         <div class="comment-block">
             <div class="user">
-                <img id="commentAvatar" src="/<?= $comment['avatar'] ?>"><br>
+                <img class="commentAvatar" src="/<?= $comment['avatar'] ?>" alt=""><br>
                 <strong><a href="/uzivatelia/<?= $comment['author'] ?>"><?= $comment['author'] ?></a></strong><br>
                 <?= $comment['userRank'] ?>
             </div>
@@ -34,12 +34,12 @@
             <div class="clear"></div>
         </div>
     <?php endforeach ?>
-</section>
+</div>
 
 <?php if(isset($admin)) { //ak je uzivatel prihlaseny ?>
 
     <section>
-        <h3>Pridať komentár</h3>
+        <h4>Pridať komentár</h4>
         <form action="#" method="post">
             <input type="text" name="article_id" value="<?= $article['article_id'] ?>" hidden>
             <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden>
@@ -49,11 +49,11 @@
             <textarea name="comment"><?php if(isset($_POST['comment'])) echo(htmlspecialchars($_POST['comment'])) ?></textarea><br>
 
             <p>
-                <img src="/img/smiles/big-smile.gif" title=":D">
-                <img src="/img/smiles/smile.gif" title=":)">
-                <img src="/img/smiles/wink.gif" title=";)">
-                <img src="/img/smiles/sad.gif" title=":(">
-                <img src="/img/smiles/surprised.gif" title=":o">
+                <img src="/img/smiles/big-smile.gif" title=":D" alt="big smile">
+                <img src="/img/smiles/smile.gif" title=":)" alt="smile">
+                <img src="/img/smiles/wink.gif" title=";)" alt="wink">
+                <img src="/img/smiles/sad.gif" title=":(" alt="sad">
+                <img src="/img/smiles/surprised.gif" title=":o" alt="surprised">
             </p>
 
             <input type="submit" value="Odoslať komentár">

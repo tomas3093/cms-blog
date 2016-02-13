@@ -15,61 +15,61 @@
         <link rel="stylesheet" href="/css/responsive-nav.css">
         <script src="/js/responsive-nav.js"></script>
 
-        <!--skripty pre automaticke doplnovanie textovych poli-->
+        <!-- skripty pre automaticke doplnovanie textovych poli -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
-    
+
     <body>
 
+        <p class="logoMobile"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></p>
         <nav class="nav-collapse">
             <ul>
-                <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
-                <li><a href="/kategoria/novinky">Novinky</a></li>
-                <li><a href="/kategoria/programovanie">Programovanie</a></li>
-                <li><a href="/kategoria/hardware">Hardware</a></li>
-                <li><a href="/kategoria/software">Software</a></li>
-                <li><a href="/kategoria/ostatne">Ostatné</a></li>
-            </ul>
+                    <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
+                    <li><a href="/kategoria/novinky">Novinky</a></li>
+                    <li><a href="/kategoria/programovanie">Programovanie</a></li>
+                    <li><a href="/kategoria/hardware">Hardware</a></li>
+                    <li><a href="/kategoria/software">Software</a></li>
+                    <li><a href="/kategoria/ostatne">Ostatné</a></li>
+                </ul>
         </nav>
 
-        <section>
+        <div id="messages">
             <?php foreach($messages as $message) : ?>
-                <div class="<?= $message[1] ?>"><?= $message[0] ?></div>
+                <p class="<?= $message[1] ?>"><?= $message[0] ?></p>
             <?php endforeach ?>
-        </section>
-
-
-        <div id="content">
-
-            <!--Samotny clanok------------------------------------------------------------------------->
-            <article>
-                <?=$this->controller->outputView()?>
-            </article>
-
-            <!--Bocny panel---------------------------------------------------------------------------->
-            <aside>
-                <p><?= $user ?></p>
-
-                <h2>Najčítanejšie</h2>
-                <ol>
-                    <?php foreach($topArticles as $article) : ?>
-                        <li><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></li>
-                    <?php endforeach ?>
-                </ol>
-            </aside>
-
-            <footer>
-                <p>
-                    design <strong>&amp;</strong> code | Tomáš Blázy <br>
-                    &copy;<?= date("Y"); ?> <i>v1.11</i>
-                    <a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a>
-                </p>
-            </footer>
         </div>
 
-        <!-- javascript --------------------------------------------------------------------------->
+
+        <div class="page-wrap">
+            <!-- Samotny clanok -->
+            <section id="content">
+                <?=$this->controller->outputView()?>
+            </section>
+
+            <!-- Bocny panel -->
+            <aside>
+                <div class="loginBox">
+                    <span><?= $user ?></span>
+                </div>
+                <div class="mostReadBox">
+                    <h2 class="mostReadBox-title">NAJČÍTANEJŠIE</h2>
+                    <ul class="mostReadList">
+                        <?php foreach($topArticles as $article) : ?>
+                            <li><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="site-footer">
+            <p><a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a></p>
+            <strong>design &amp; code | Tomáš Blázy <br> &copy;<?= date("Y"); ?> <i>v1.13</i></strong>
+        </footer>
+
+        <!-- javascript -->
         <script>
             //responsive menu customizable options
             var nav = responsiveNav(".nav-collapse", { // Selector

@@ -2,7 +2,6 @@
   display: block;
   width: 100%;
   background: #252525;
-  /*clip: rect(0 0 0 0);*/
   max-height: 0;
   position: absolute;
   overflow: hidden;
@@ -20,7 +19,19 @@
   font-size: 15px;
 }
 
-.logo a {
+.logoMobile {
+  display: block;
+  text-align: center;
+  background: #252525;
+  color: white;
+  font-size: 130%;
+  font-style: oblique;
+  letter-spacing: 0.2em;
+  padding: 5px 0;
+  margin: 0 0 5px 0;
+}
+
+.logo {
   display: none;
 }
 
@@ -56,10 +67,6 @@
   user-select: none;
 }
 
-.logo a {
-  margin-right: 65px;
-}
-
 .logo a:hover {
   background: #252525;
 }
@@ -67,31 +74,36 @@
 /* FOR DESKTOPS */
 @media screen and (min-width: 780px) {
 
-  .js .nav-collapse {
-    position: relative;
-    margin-bottom: 0;
-  }
+        .js .nav-collapse {
+          position: relative;
+          margin-bottom: 0;
+        }
 
-  .js .nav-collapse a {
-    line-height: 45px;
-  }
+        .js .nav-collapse a {
+          line-height: 45px;
+        }
 
-  .js .nav-collapse ul li {
-    width: auto;
-    display: inline-block;
-  }
+        .js .nav-collapse ul li {
+          width: auto;
+          display: inline-block;
+        }
 
-  .js .nav-collapse.closed {
-    max-height: none;
-  }
+        .js .nav-collapse.closed {
+          max-height: none;
+        }
 
-  .nav-toggle {
-    display: none;
-  }
+        .nav-toggle {
+          display: none;
+        }
 
-  .logo a {
-    display: block;
-    font-style: oblique;
-  }
+        .logo {
+          display: block;
+          margin-right: 60px;
+          letter-spacing: 0.15em;
+          font-style: oblique;
+        }
 
+        .logoMobile {
+          display: none;
+        }
 }

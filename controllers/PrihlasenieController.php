@@ -7,8 +7,6 @@ class PrihlasenieController extends Controller
         $userManager = new UserManager();
         if($userManager->returnUser())
             $this->redirect('panel');
-        //hlavicka stranky
-        $this->data['title'] = 'Prihlásenie';
 
         if($_POST)
         {
@@ -23,7 +21,8 @@ class PrihlasenieController extends Controller
                 $this->createMessage($error->getMessage(), 'warning');
             }
         }
-        //nastavenie sablony
-        $this->view = 'logIn';
+
+        $this->head['title'] = 'Prihlásenie';   //title
+        $this->view = 'logIn';                  //sablona
     }
 }

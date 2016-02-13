@@ -1,5 +1,7 @@
 html {
         background-color: white;
+        margin: 0;
+        padding: 0;
 }
 
 body {
@@ -15,6 +17,36 @@ body {
         font-style: oblique;
 }
 
+.loginBox {
+        text-align: center;
+        border: solid black 1px;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 8px 0;
+}
+
+.mostReadBox {
+        border: solid black 1px;
+        border-radius: 5px;
+        padding: 5px;
+}
+
+.mostReadBox-title {
+        font-size: 110%;
+        background: #252525;
+        color: white;
+        padding: 5px;
+}
+
+.mostReadList {
+        list-style: outside decimal;
+        padding: 0 8%;
+}
+
+.mostReadList li {
+        padding: 0.3em 0;
+}
+
 h1 {
         text-align: center;
         color: #444444;
@@ -23,6 +55,7 @@ h1 {
 
 a {
         text-decoration: none;
+        color: inherit;
 }
 
 .blue-letter {
@@ -35,14 +68,14 @@ a {
         height: auto;
 }
 
-#commentAvatar {
+.commentAvatar {
         max-width: 48px;
         height: auto;
 }
 
 .article-box {
-        background: rgba(98, 125, 255, 0.15);
-        border-top: solid 2px rgba(128, 128, 128, 0.55);
+        border: solid 1px #252525;
+        border-radius: 5px;
         padding: 5px 2px 5px 2px;
 }
 
@@ -70,53 +103,23 @@ a {
         min-height: 120px;
 }
 
-#articleThumb {
+.articleThumb {
         vertical-align: middle;
         max-height: 120px;
         max-width: 120px;
 }
 
-article p {
-        line-height: 1.35;
-        color: #444444;
-}
-
 aside {
         background-color: rgb(243, 243, 243);
-        border-left: 0;
-        border-top: solid #444444 1px;
         margin: 10px 0;
 }
 
-footer {
-        border-top: solid 3px #444444;
-        font-size: 11px;
+.site-footer {
+        clear: both;
         text-align: center;
-        padding-top: 20px;
-}
-
-input[type="submit"] {
-        display: block;
-        font-weight: bold;
-        background: black;
+        padding: 5px;
+        background: #252525;
         color: white;
-        padding: 10px 25px;
-        margin: 20px auto 0 auto;
-        border-radius: 5px;
-        border: none;
-}
-
-input[type="submit"]:hover {
-        background: #0F0D32;
-        color: #EEEEEE;
-        cursor: pointer;
-}
-
-input[type="text"], input[type="email"], input[type="password"] {
-        width: 250px;
-        border-radius: 5px;
-        border: 1px solid #aaaaaa;
-        padding: 0.3em;
 }
 
 textarea {
@@ -162,27 +165,33 @@ textarea {
         background: #f8f8f8;
         color: #ff6a6a;
         border: solid 2px #ff6a6a;
+        border-radius: 5px;
         font-weight: bold;
         line-height: 25px;
         padding: 5px;
+        margin: 10px 0;
 }
 
 .success {
         background: #f8f8f8;
         color: limegreen;
         border: solid 2px limegreen;
+        border-radius: 5px;
         font-weight: bold;
         line-height: 25px;
         padding: 5px;
+        margin: 10px 0;
 }
 
 .info {
         background: #f8f8f8;
         color: #435fd7;
         border: solid 2px #435fd7;
+        border-radius: 5px;
         font-weight: bold;
         line-height: 25px;
         padding: 5px;
+        margin: 10px 0;
 }
 
 /*For desktops*/
@@ -195,27 +204,17 @@ textarea {
         }
 
         aside {
-                width: 25%;
-                margin-left: 3%;
+                width: 28%;
                 float: right;
-                background-color: rgb(243, 243, 243);
-                border-top: 0;
-                border-left: solid #444444 1px;
-                padding: 0 7px;
         }
 
-        article {
+        #content {
                 width: 70%;
                 float: left;
-                padding: 10px 0;
+                padding: 5px 0;
         }
 
         #article-box {
                 padding: 15px 5px;
-        }
-
-        footer {
-                clear: both;
-                margin-top: 20px;
         }
 }

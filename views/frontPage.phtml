@@ -1,194 +1,184 @@
 <!DOCTYPE html>
 
 <html lang="sk">
+    <head>
+        <!--[if lt IE 9]><script src="js/html5shiv-printshiv.js"></script><![endif]-->
+        <title><?= $title ?></title>
+        <meta charset="UTF-8"/>
+        <meta name="description" content="<?= $description ?>"/>
+        <meta name="keywords" content="<?= $key_words ?>"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/style.css" type="text/css">
+        <link rel="stylesheet" href="/css/front-page.css" type="text/css">
+        <link rel="stylesheet" href="/css/responsive-nav.css" type="text/css">
+        <script src="/js/responsive-nav.js"></script>
+    </head>
 
-<head>
-    <!--[if lt IE 9]><script src="js/html5shiv-printshiv.js"></script><![endif]-->
-    <title><?= $title ?></title>
-    <meta charset="UTF-8"/>
-    <meta name="description" content="<?= $description ?>"/>
-    <meta name="keywords" content="<?= $key_words ?>"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-    <link rel="stylesheet" href="/css/front-page.css" type="text/css">
-    <link rel="stylesheet" href="/css/responsive-nav.css" type="text/css">
-    <script src="/js/responsive-nav.js"></script>
-</head>
+    <body>
 
-<body>
+        <nav class="nav-collapse">
+            <ul>
+                <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
+                <li><a href="/kategoria/novinky">Novinky</a></li>
+                <li><a href="/kategoria/programovanie">Programovanie</a></li>
+                <li><a href="/kategoria/hardware">Hardware</a></li>
+                <li><a href="/kategoria/software">Software</a></li>
+                <li><a href="/kategoria/ostatne">Ostatné</a></li>
+            </ul>
+        </nav>
 
-<nav class="nav-collapse">
-    <ul>
-        <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
-        <li><a href="/kategoria/novinky">Novinky</a></li>
-        <li><a href="/kategoria/programovanie">Programovanie</a></li>
-        <li><a href="/kategoria/hardware">Hardware</a></li>
-        <li><a href="/kategoria/software">Software</a></li>
-        <li><a href="/kategoria/ostatne">Ostatné</a></li>
-    </ul>
-</nav>
-
-<section>
-    <?php foreach($messages as $message) : ?>
-        <p class="<?= $message[1] ?>"><?= $message[0] ?></p>
-    <?php endforeach ?>
-</section>
+        <div id="messages">
+            <?php foreach($messages as $message) : ?>
+                <p class="<?= $message[1] ?>"><?= $message[0] ?></p>
+            <?php endforeach ?>
+        </div>
 
 
-<div id="content">
+        <h1>Novinky</h1>
+        <div class="row">
+            <?php foreach($novinkyCategoryArticles as $article) : ?>
 
-    <h1>Novinky</h1>
-    <div class="row">
-        <?php foreach($novinkyCategoryArticles as $article) : ?>
-
-            <div class="col-1-3">
-                <div class="article-box">
-                    <div class="article-heading">
-                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                <div class="col-1-3">
+                    <div class="article-box">
+                        <div class="article-heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+                        </div>
+                        <div class="article">
+                            <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                            <?= $article['description'] ?><br>
+                        </div>
                     </div>
-                    <div class="thumbnail-box">
-                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
-                    </div>
-                    <div class="article">
-                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
-                        <?= $article['description'] ?><br>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
 
-        <?php endforeach ?>
-    </div><!-- /.row -->
+            <?php endforeach ?>
+        </div><!-- /.row -->
 
-    <h1>Programovanie</h1>
-    <div class="row">
-        <?php foreach($programovanieCategoryArticles as $article) : ?>
+        <h1>Programovanie</h1>
+        <div class="row">
+            <?php foreach($programovanieCategoryArticles as $article) : ?>
 
-            <div class="col-1-3">
-                <div class="article-box">
-                    <div class="article-heading">
-                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                <div class="col-1-3">
+                    <div class="article-box">
+                        <div class="article-heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+                        </div>
+                        <div class="article">
+                            <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                            <?= $article['description'] ?><br>
+                        </div>
                     </div>
-                    <div class="thumbnail-box">
-                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
-                    </div>
-                    <div class="article">
-                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
-                        <?= $article['description'] ?><br>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
 
-        <?php endforeach ?>
-    </div><!-- /.row -->
+            <?php endforeach ?>
+        </div><!-- /.row -->
 
-    <h1>Hardware</h1>
-    <div class="row">
-        <?php foreach($hardwareCategoryArticles as $article) : ?>
+        <h1>Hardware</h1>
+        <div class="row">
+            <?php foreach($hardwareCategoryArticles as $article) : ?>
 
-            <div class="col-1-3">
-                <div class="article-box">
-                    <div class="article-heading">
-                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                <div class="col-1-3">
+                    <div class="article-box">
+                        <div class="article-heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+                        </div>
+                        <div class="article">
+                            <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                            <?= $article['description'] ?><br>
+                        </div>
                     </div>
-                    <div class="thumbnail-box">
-                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
-                    </div>
-                    <div class="article">
-                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
-                        <?= $article['description'] ?><br>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
 
-        <?php endforeach ?>
-    </div><!-- /.row -->
+            <?php endforeach ?>
+        </div><!-- /.row -->
 
-    <h1>Software</h1>
-    <div class="row">
-        <?php foreach($softwareCategoryArticles as $article) : ?>
+        <h1>Software</h1>
+        <div class="row">
+            <?php foreach($softwareCategoryArticles as $article) : ?>
 
-            <div class="col-1-3">
-                <div class="article-box">
-                    <div class="article-heading">
-                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                <div class="col-1-3">
+                    <div class="article-box">
+                        <div class="article-heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+                        </div>
+                        <div class="article">
+                            <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                            <?= $article['description'] ?><br>
+                        </div>
                     </div>
-                    <div class="thumbnail-box">
-                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
-                    </div>
-                    <div class="article">
-                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
-                        <?= $article['description'] ?><br>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
 
-        <?php endforeach ?>
-    </div><!-- /.row -->
+            <?php endforeach ?>
+        </div><!-- /.row -->
 
-    <h1>Ostatné</h1>
-    <div class="row">
-        <?php foreach($ostatneCategoryArticles as $article) : ?>
+        <h1>Ostatné</h1>
+        <div class="row">
+            <?php foreach($ostatneCategoryArticles as $article) : ?>
 
-            <div class="col-1-3">
-                <div class="article-box">
-                    <div class="article-heading">
-                        <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-                        <i class="fa fa-user"></i> <?= $article['author'] ?>
+                <div class="col-1-3">
+                    <div class="article-box">
+                        <div class="article-heading">
+                            <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
+                            <i class="fa fa-user"></i> <?= $article['author'] ?>
+                        </div>
+                        <div class="thumbnail-box">
+                            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+                        </div>
+                        <div class="article">
+                            <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+                            <?= $article['description'] ?><br>
+                        </div>
                     </div>
-                    <div class="thumbnail-box">
-                        <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img id="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
-                    </div>
-                    <div class="article">
-                        <h2><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
-                        <?= $article['description'] ?><br>
-                    </div>
+                    <div class="clear"></div>
                 </div>
-                <div class="clear"></div>
-            </div>
 
-        <?php endforeach ?>
-    </div><!-- /.row -->
+            <?php endforeach ?>
+        </div><!-- /.row -->
 
-    <footer>
-        <p>
-            design <strong>&amp;</strong> code | Tomáš Blázy <br>
-            &copy;<?= date("Y"); ?> <i>v1.11</i>
-            <a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a>
-        </p>
-    </footer>
-</div>
+        <footer class="site-footer">
+            <p><a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a></p>
+            <strong>design &amp; code | Tomáš Blázy <br> &copy;<?= date("Y"); ?> <i>v1.13</i></strong>
+        </footer>
 
-<!-- javascript --------------------------------------------------------------------------->
+        <!-- javascript -->
+        <script>
+            //responsive menu customizable options
+            var nav = responsiveNav(".nav-collapse", { // Selector
+                animate: true, // Boolean: Use CSS3 transitions, true or false
+                transition: 284, // Integer: Speed of the transition, in milliseconds
+                label: "<i class='fa fa-bars fa-2x'></i>", // String: Label for the navigation toggle
+                insert: "before", // String: Insert the toggle before or after the navigation
+                customToggle: "", // Selector: Specify the ID of a custom toggle
+                closeOnNavClick: false, // Boolean: Close the navigation when one of the links are clicked
+                openPos: "relative", // String: Position of the opened nav, relative or static
+                navClass: "nav-collapse", // String: Default CSS class. If changed, you need to edit the CSS too!
+                navActiveClass: "js-nav-active", // String: Class that is added to  element when nav is active
+                jsClass: "js", // String: 'JS enabled' class which is added to  element
+                init: function(){}, // Function: Init callback
+                open: function(){}, // Function: Open callback
+                close: function(){} // Function: Close callback
+            });
+        </script>
 
-
-<script>
-    //responsive menu customizable options
-    var nav = responsiveNav(".nav-collapse", { // Selector
-        animate: true, // Boolean: Use CSS3 transitions, true or false
-        transition: 284, // Integer: Speed of the transition, in milliseconds
-        label: "<i class='fa fa-bars fa-2x'></i>", // String: Label for the navigation toggle
-        insert: "before", // String: Insert the toggle before or after the navigation
-        customToggle: "", // Selector: Specify the ID of a custom toggle
-        closeOnNavClick: false, // Boolean: Close the navigation when one of the links are clicked
-        openPos: "relative", // String: Position of the opened nav, relative or static
-        navClass: "nav-collapse", // String: Default CSS class. If changed, you need to edit the CSS too!
-        navActiveClass: "js-nav-active", // String: Class that is added to  element when nav is active
-        jsClass: "js", // String: 'JS enabled' class which is added to  element
-        init: function(){}, // Function: Init callback
-        open: function(){}, // Function: Open callback
-        close: function(){} // Function: Close callback
-    });
-</script>
-
-</body>
-
+    </body>
 </html>

@@ -7,7 +7,7 @@
     <!-- vlastnost enctype - specifies which content-type to use when submitting the form -->
     <form action="" method="post" enctype="multipart/form-data">
         <h4>Profilový obrázok</h4>
-        <img id="avatar" src="/<?= $avatar ?>"><br><br>
+        <img id="avatar" src="/<?= $avatar ?>" alt=""><br><br>
         <i class="fa fa-upload"></i>
         <input type="file" size="32" name="image_field">
         <input type="submit" value="Nahrať obrázok" name="uploadImage">
@@ -49,7 +49,8 @@
 
     <table>
         <tr>
-            <td><img id="avatar" src="/<?= $avatar ?>"></td>
+            <td><img id="avatar" src="/<?= $avatar ?>" alt=""></td>
+            <td></td>
         </tr>
 
         <tr>

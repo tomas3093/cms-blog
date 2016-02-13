@@ -5,7 +5,7 @@
 
     <fieldset>
         <legend>Kontaktujte nás</legend>
-        <p><label class="field" for="email">Vaša emailová adresa</label><input type="email" name="email" required value="<?php if(isset($_POST['email'])) echo(htmlspecialchars($_POST['email'])); ?>"></p>
+        <p><input type="email" name="email" value="<?php if(isset($_POST['email'])) echo(htmlspecialchars($_POST['email'])); ?>" placeholder="Vaša emailová adresa" required></p>
         <p><textarea name="message"><?php if(isset($_POST['message'])) echo(htmlspecialchars($_POST['message'])) ?></textarea></p>
         <p> <i><?= $captcha['captcha'] ?></i> <input type="text" name="captchaAnswer" required> </p>
         <p><input type="submit" value="Odoslať"></p>
