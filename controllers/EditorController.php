@@ -34,7 +34,7 @@ class EditorController extends Controller
                 $article = array_intersect_key($_POST, array_flip($keys));
 
                 //upload a spracovanie suboru
-                $imageUpload = new upload($_FILES['image_field']);
+                $imageUpload = new upload($_FILES['image_field'], 'sk_SK');
 
                 //nastavenie ID noveho clanku
                 if(empty($article['article_id']))

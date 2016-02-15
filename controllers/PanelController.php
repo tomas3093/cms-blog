@@ -72,11 +72,11 @@ class PanelController extends Controller
         //ak bol odoslany formular s novym oznamom
         if(isset($_POST['newNoticeSubmit']))
         {
-            //overenie ci je prihlaseny admin; nie su osetrene vstupy
+            //overenie ci je prihlaseny admin
             $this->checkUser(true);
-            if(isset($_POST['noticeField']) && isset($_POST['noticeStyle']))
+            if(isset($_POST['noticeField']))
             {
-                $noticeManager->addNotice($_POST['noticeField'], $_POST['noticeStyle']);
+                $noticeManager->addNotice($_POST['noticeField']);
                 $this->createMessage('Oznam bol úspešne uložený', 'success');
                 $this->redirect('panel');
             }

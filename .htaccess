@@ -1,13 +1,11 @@
 # Konfiguracia Apache servera
-
 Options -Indexes
 
 RewriteEngine On
 # RewriteBase /
 
-# front controller
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule !\.(pdf|js|ico|gif|jpg|png|css|rar|zip|tar\.gz)$ index.php [L]
+RewriteRule !\.(css|js|icon|zip|rar|png|jpg|gif|pdf)$ index.php [L]
 
 AddType application/x-httpd-php .php .phtml

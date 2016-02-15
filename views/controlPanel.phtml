@@ -3,29 +3,79 @@
 
 <?php if($admin == '1') : #ak je prihlaseny admin ?>
 
-    <fieldset>
-        <legend>Možnosti</legend>
-        <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
-        <p><a href="/panel/kratka-sprava"><i class="fa fa-plus"></i> Nová krátka správa</a></p>
-        <p><a href="/clanky/unpublished"><i class="fa fa-pencil-square-o"></i> Rozpísané články</a></p>
-        <p><a href="/panel/moje-clanky"><i class="fa fa-pencil-square-o"></i> Moje články</a></p>
-        <p><a href="/clanky"><i class="fa fa-tasks"></i> Správa článkov</a></p>
-        <p><a href="/uzivatelia"><i class="fa fa-users"></i> Správa užívatelov</a></p>
-        <p><a href="/statistiky"><i class="fa fa-bar-chart"></i> Štatistiky</a></p>
-        <p><a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a></p>
-    </fieldset>
+    <div class="controlPanelMenu-box">
+        <h2 class="controlPanel-title">MENU</h2>
+
+        <div class="controlPanelItem-box">
+            <a href="/editor">
+                <div class="controlPanelMenu-icon"><i class="fa fa-pencil fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Nový článok</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/panel/kratka-sprava">
+                <div class="controlPanelMenu-icon"><i class="fa fa-plus fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Nová krátka správa</div>
+            </a>
+        </div>
 
 
-    <fieldset>
-        <legend>Oznamy</legend>
-        <table>
+        <div class="controlPanelItem-box">
+            <a href="/clanky/unpublished">
+                <div class="controlPanelMenu-icon"><i class="fa fa-pencil-square-o fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Rozpísané články</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/panel/moje-clanky">
+                <div class="controlPanelMenu-icon"><i class="fa fa-pencil-square-o fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Moje články</div>
+            </a>
+        </div>
+
+
+        <div class="controlPanelItem-box">
+            <a href="/clanky">
+                <div class="controlPanelMenu-icon"><i class="fa fa-tasks fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Správa článkov</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/uzivatelia">
+                <div class="controlPanelMenu-icon"><i class="fa fa-users fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Správa užívatelov</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/statistiky">
+                <div class="controlPanelMenu-icon"><i class="fa fa-bar-chart fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Štatistiky</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/uzivatelia/<?= $user ?>">
+                <div class="controlPanelMenu-icon"><i class="fa fa-cog fa-fw fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Nastavenia profilu</div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="controlPanelNotice-box">
+        <h2 class="controlPanel-title">OZNAMY</h2>
+        <table class="controlPanelNotice-table">
             <?php foreach($notices as $notice) : ?>
                 <tr>
                     <td><?= $notice['notice'] ?></td>
-                    <td><?= $notice['type'] ?></td>
                     <td>
                         <a href="/panel/<?= $notice['notice_id'] ?>/odstranit"
-                            onclick="return confirm('Naozaj chcete odstrániť oznam?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                           onclick="return confirm('Naozaj chcete odstrániť oznam?');"><i class="fa fa-trash-o fa-fw fa-2x"></i>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach ?>
@@ -33,48 +83,68 @@
 
         <p>
             <form action="" method="post" id="notice-form">
-                Nový oznam<br>
-                <input type="text" name="noticeField" required>
-                <select name="noticeStyle" form="notice-form" required>
-                    <option value="info">Info</option>
-                    <option value="success">Úspech</option>
-                    <option value="warning">Varovanie</option>
-                </select>
+                <input type="text" name="noticeField" placeholder="Nový oznam" required>
                 <input type="submit" name="newNoticeSubmit" value="Vložiť oznam">
             </form>
         </p>
-    </fieldset>
+    </div>
 
 <?php endif ?>
+
 
 <?php if($admin == '2') : #ak je prihlaseny redaktor ?>
 
-    <fieldset>
-        <legend>Možnosti</legend>
-        <p><a href="/editor"><i class="fa fa-pencil"></i> Nový článok</a></p>
-        <p><a href="/panel/moje-clanky"><i class="fa fa-tasks"></i> Moje články</a></p>
-        <p><a href="/uzivatelia/<?= $user ?>"><i class="fa fa-cog fa-fw"></i> Nastavenia profilu</a></p>
-    </fieldset>
+    <div class="controlPanelMenu-box">
+        <h2 class="controlPanel-title">MENU</h2>
+
+        <div class="controlPanelItem-box">
+            <a href="/editor">
+                <div class="controlPanelMenu-icon"><i class="fa fa-pencil fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Nový článok</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/panel/moje-clanky">
+                <div class="controlPanelMenu-icon"><i class="fa fa-pencil-square-o fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Moje články</div>
+            </a>
+        </div>
+
+        <div class="controlPanelItem-box">
+            <a href="/uzivatelia/<?= $user ?>">
+                <div class="controlPanelMenu-icon"><i class="fa fa-cog fa-fw fa-4x"></i></div>
+                <div class="controlPanelMenu-label">Nastavenia profilu</div>
+            </a>
+        </div>
+    </div>
 
 <?php endif ?>
 
 
-<fieldset>
-    <legend>Správy</legend>
-    <p><a href="/sprava/vytvorit"><i class="fa fa-envelope-o"></i> Nová správa</a></p>
+<div class="controlPanelMessage-box">
+    <h2 class="controlPanel-title">SPRÁVY</h2>
 
-    <p>
-        <strong>Prijaté</strong>
+    <span class="controlPanelMessage-button"><a href="/sprava/vytvorit"><i class="fa fa-envelope-o"></i> Nová správa</a></span>
+    <span class="controlPanelMessage-button" id="showReceived">Prijaté</span>
+    <span class="controlPanelMessage-button" id="showSended">Odoslané</span>
+
+    <div class="receivedMessages-box">
         <?php if(!empty($receivedMessages)) : ?>
-            <table>
+            <table class="messagesTable-list">
                 <tr>
-                    <th>Čas</th>
-                    <th>Od</th>
-                    <th>Správa</th>
+                    <th></th>
+                    <th>OD</th>
+                    <th>PREDMET</th>
+                    <th><i class="fa fa-clock-o"></i></th>
+
                 </tr>
                 <?php foreach($receivedMessages as $message) : ?>
                     <tr>
-                        <td><?= date("j.n.Y", $message['date']) ?></td>
+                        <td>
+                            <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
+                               onclick="return confirm('Naozaj chcete odstrániť správu?');" title="Odstrániť"><i class="fa fa-trash-o fa-fw fa-2x"></i></a>
+                        </td>
                         <td><a href="/uzivatelia/<?= $message['sender'] ?>"><?= $message['sender'] ?></a></td>
 
                         <?php if($message['unread'] == 1) : #ak je sprava neprecitana, zobraz ju tucnym pismom ?>
@@ -83,41 +153,58 @@
                             <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['subject'] ?></a></td>
                         <?php endif ?>
 
-                        <td>
-                            <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
-                               onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
-                        </td>
+                        <td><?= date("j.n.Y", $message['date']) ?></td>
                     </tr>
                 <?php endforeach ?>
             </table>
+
         <?php else: ?>
             <p><i>Žiadne prijaté správy</i></p>
         <?php endif ?>
-    </p>
+    </div>
 
-    <p>
-        <strong>Odoslané</strong>
+
+    <div class="sendedMessages-box">
         <?php if(!empty($sentMessages)) : ?>
-            <table>
+            <table class="messagesTable-list">
                 <tr>
-                    <th>Čas</th>
-                    <th>Komu</th>
-                    <th>Správa</th>
+                    <th></th>
+                    <th>KOMU</th>
+                    <th>PREDMET</th>
+                    <th><i class="fa fa-clock-o"></i></th>
                 </tr>
                 <?php foreach($sentMessages as $message) : ?>
                     <tr>
-                        <td><i><?= date("j.n.Y", $message['date']) ?><i/></td>
-                        <td><a href="/uzivatelia/<?= $message['recipient'] ?>"><?= $message['recipient'] ?></a></td>
-                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['subject'] ?></a></td>
                         <td>
                             <a href="/sprava/<?= $message['message_id'] ?>/odstranit"
-                               onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                               onclick="return confirm('Naozaj chcete odstrániť správu?');"><i class="fa fa-trash-o fa-fw fa-2x"></i></a>
                         </td>
+                        <td><a href="/uzivatelia/<?= $message['recipient'] ?>"><?= $message['recipient'] ?></a></td>
+                        <td><a href="/sprava/<?= $message['message_id'] ?>/zobrazit"><?= $message['subject'] ?></a></td>
+                        <td><i><?= date("j.n.Y", $message['date']) ?><i/></td>
                     </tr>
                 <?php endforeach ?>
             </table>
         <?php else: ?>
             <p><i>Žiadne odoslané správy</i></p>
         <?php endif ?>
-    </p>
-</fieldset>
+    </div>
+</div>
+
+
+<!-- Javascript -->
+<script>
+    $("#showReceived").click(function(){
+        $(".receivedMessages-box").toggle(180);
+        $(".sendedMessages-box").hide(180);
+        $("#showReceived").toggleClass("activeButton");
+        $("#showSended").removeClass("activeButton");
+    });
+
+    $("#showSended").click(function(){
+        $(".sendedMessages-box").toggle(180);
+        $(".receivedMessages-box").hide(180);
+        $("#showSended").toggleClass("activeButton");
+        $("#showReceived").removeClass("activeButton");
+    });
+</script>

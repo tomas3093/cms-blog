@@ -4,15 +4,14 @@
 class NoticeManager
 {
     //vytvori novy oznam
-    public function addNotice($noticeText, $style)
+    public function addNotice($noticeText)
     {
         //aktualny cas
         $date = new DateTime();
         $time = $date->getTimestamp();
 
         $notice = array(
-            'notice' => $noticeText,
-            'type' => $style,
+            'notice' => '<i class="fa fa-info-circle"></i> ' . $noticeText,
             'date' => $time
         );
         //ulozenie oznamu do databazy

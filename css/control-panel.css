@@ -1,0 +1,107 @@
+/* MENU */
+
+.controlPanelMenu-box {
+    text-align: center;
+    border: solid 1px #252525;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.controlPanel-title {
+    text-align: center;
+    font-size: 110%;
+    background: #252525;
+    color: white;
+    padding: 5px;
+    margin-top: 0;
+}
+
+.controlPanelItem-box {
+    display: inline-block;
+    margin: 10px;
+}
+
+.controlPanelItem-box a:hover {
+    color: rgba(133, 133, 133, 0.86);
+}
+
+
+/* OZNAMY */
+
+.controlPanelNotice-box {
+    border: solid 1px #252525;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.controlPanelNotice-table {
+    width: 100%;
+}
+
+.controlPanelNotice-table tr:hover {
+    color: rgba(133, 133, 133, 0.86);
+}
+
+
+/* SPRAVY */
+
+.controlPanelMessage-box {
+    text-align: center;
+    border: solid 1px #252525;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.controlPanelMessage-button {
+    display: block;
+    font-size: 110%;
+    border: solid 1px #252525;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.controlPanelMessage-button:hover {
+    color: rgba(133, 133, 133, 0.86);
+}
+
+.sendedMessages-box, .receivedMessages-box {
+    display: none;
+}
+
+.activeButton {
+    color: rgba(35, 35, 35, 0.86);
+    background-color: rgba(209, 209, 209, 0.86);
+}
+
+
+/* ZOZNAM SPRAV */
+
+.controlPanelMessage-box table {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.controlPanelMessage-box th, td {
+    text-align: left;
+    padding: 10px 5px;
+}
+
+.controlPanelMessage-box tr:hover {
+    background-color: rgba(235, 235, 235, 0.86);
+}
+
+
+/* FOR DESKTOPS */
+
+@media screen and (min-width: 780px) {
+
+    .controlPanelMessage-button {
+        display: inline-block;
+        padding: 5px 25px;
+    }
+
+}

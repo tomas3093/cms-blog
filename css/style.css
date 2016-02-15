@@ -23,6 +23,11 @@ body {
         border-radius: 5px;
         padding: 5px;
         margin: 8px 0;
+        line-height: 1.85em;
+}
+
+.loginBox a:hover {
+        color: rgba(133, 133, 133, 0.86);
 }
 
 .mostReadBox {
@@ -47,6 +52,10 @@ body {
         padding: 0.3em 0;
 }
 
+.mostReadList li:hover {
+        color: rgba(133, 133, 133, 0.86);
+}
+
 h1 {
         text-align: center;
         color: #444444;
@@ -68,47 +77,6 @@ a {
         height: auto;
 }
 
-.commentAvatar {
-        max-width: 48px;
-        height: auto;
-}
-
-.article-box {
-        border: solid 1px #252525;
-        border-radius: 5px;
-        padding: 5px 2px 5px 2px;
-}
-
-.article-heading {
-        font-size: 85%;
-        text-align: left;
-}
-
-.thumbnail-box {
-        width: 120px;
-        height: 120px;
-        float: left;
-        white-space: nowrap;
-        text-align: center;
-        margin: 1em 0;
-}
-
-.box-center {
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-}
-
-.article-box .article {
-        min-height: 120px;
-}
-
-.articleThumb {
-        vertical-align: middle;
-        max-height: 120px;
-        max-width: 120px;
-}
-
 aside {
         background-color: rgb(243, 243, 243);
         margin: 10px 0;
@@ -122,43 +90,8 @@ aside {
         color: white;
 }
 
-textarea {
-        border-radius: 5px;
-        border: 1px solid #aaaaaa;
-        width: 483px;
-        height: 90px;
-}
-
 .clear {
         clear: both;
-}
-
-.comment-block {
-        display: block;
-        background-color: rgb(243, 243, 243);
-        border-top: solid 2px rgba(128, 128, 128, 0.55);
-        padding: 5px 2px;
-}
-
-.comment-block .user {
-        display: block;
-        text-align: center;
-        width: 20%;
-        float: left;
-}
-
-.comment-block .comment {
-        display: block;
-        width: 80%;
-        min-height: 83px;
-        float: right;
-}
-
-.comment-block .comment-date {
-        clear: both;
-        text-align: right;
-        font-size: 80%;
-        font-style: italic;
 }
 
 .warning {
@@ -194,7 +127,7 @@ textarea {
         margin: 10px 0;
 }
 
-/*For desktops*/
+/* FOR DESKTOPS */
 @media screen and (min-width: 780px) {
 
         body {

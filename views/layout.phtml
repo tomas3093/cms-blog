@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html lang="sk">
-    
     <head>
         <!--[if lt IE 9]><script src="js/html5shiv-printshiv.js"></script><![endif]-->
         <title><?= $title ?></title>
@@ -9,15 +8,19 @@
         <meta name="description" content="<?= $description ?>"/>
         <meta name="keywords" content="<?= $key_words ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/style.css" type="text/css">
-        <link rel="stylesheet" href="/css/form-style.css" type="text/css">
-        <link rel="stylesheet" href="/css/responsive-nav.css">
+        <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/form-style.css">
+        <link rel="stylesheet" type="text/css" href="/css/article.css">
+        <link rel="stylesheet" type="text/css" href="/css/control-panel.css">
+        <link rel="stylesheet" type="text/css" href="/css/responsive-nav.css">
         <script src="/js/responsive-nav.js"></script>
+
+        <!-- jquery core -->
+        <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 
         <!-- skripty pre automaticke doplnovanie textovych poli -->
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
 
@@ -26,13 +29,13 @@
         <p class="logoMobile"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></p>
         <nav class="nav-collapse">
             <ul>
-                    <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
-                    <li><a href="/kategoria/novinky">Novinky</a></li>
-                    <li><a href="/kategoria/programovanie">Programovanie</a></li>
-                    <li><a href="/kategoria/hardware">Hardware</a></li>
-                    <li><a href="/kategoria/software">Software</a></li>
-                    <li><a href="/kategoria/ostatne">Ostatné</a></li>
-                </ul>
+                <li class="logo"><strong><a href="/"><span class="blue-letter">C</span>oding</a></strong></li>
+                <li><a href="/kategoria/novinky">Novinky</a></li>
+                <li><a href="/kategoria/programovanie">Programovanie</a></li>
+                <li><a href="/kategoria/hardware">Hardware</a></li>
+                <li><a href="/kategoria/software">Software</a></li>
+                <li><a href="/kategoria/ostatne">Ostatné</a></li>
+            </ul>
         </nav>
 
         <div id="messages">
@@ -66,7 +69,7 @@
 
         <footer class="site-footer">
             <p><a href="/kontakt">Kontakt</a> | <a href="/site-map">Mapa stránok</a></p>
-            <strong>design &amp; code | Tomáš Blázy <br> &copy;<?= date("Y"); ?> <i>v1.13</i></strong>
+            <strong>design &amp; code | Tomáš Blázy <br> &copy; <?= date("Y"); ?></strong>
         </footer>
 
         <!-- javascript -->

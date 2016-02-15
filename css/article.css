@@ -1,0 +1,61 @@
+/* KOMENTARE */
+
+    .commentAvatar {
+        max-width: 48px;
+        height: auto;
+    }
+
+    .comment-block {
+        display: block;
+        background-color: rgb(243, 243, 243);
+        border-top: solid 2px rgba(128, 128, 128, 0.55);
+        padding: 5px 2px;
+    }
+
+    .comment-block .user {
+        display: block;
+        text-align: center;
+        width: 20%;
+        float: left;
+    }
+
+    .comment-block .comment {
+        display: block;
+        width: 80%;
+        min-height: 83px;
+        float: right;
+    }
+
+    .comment-block .comment-date {
+        clear: both;
+        text-align: right;
+        font-size: 80%;
+        font-style: italic;
+    }
+
+/* VYPISY CLANKOV */
+
+    .articleList-box {
+        border: solid 1px #252525;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .articleList-title {
+        margin: 0;
+    }
+
+    .articleList-heading {
+        font-size: 85%;
+        padding: 8px 0;
+    }
+
+    .articleList-container img {
+        margin: 0 10px 10px 0;
+        float: left;
+    }
+
+    .articleList-bottom {
+        background-color: rgba(202, 202, 202, 0.86);
+        padding: 3px;
+    }

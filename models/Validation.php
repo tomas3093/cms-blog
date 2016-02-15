@@ -75,8 +75,7 @@ class Validation
     //vrati spravny tvar URL adresy
     public function checkUrl($url)
     {
-        if(empty($url))
-            throw new UserError('Vyplňte titulok!');
+        setlocale(LC_ALL, 'slovak');                                                //nastavenie systemu
 
         $url = strip_tags($url);                                                    //odstrani HTML a PHP tagy
         $url = mb_strtolower($url);                                                 //zmeni velke pismena na male
