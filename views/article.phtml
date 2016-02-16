@@ -4,8 +4,10 @@
     <h1><?= $article['title'] ?></h1>
 
     <?= $article['content'] ?>
-    <p><?= $article['status'] ?> <?= date("j.n.Y", $article['date']) ?></p>
-    Autor: <a href="/uzivatelia/<?= $article['author'] ?>"><?= $article['author'] ?></a>
+    <div class="article-bottom">
+        <?= $article['status'] ?> <?= date("j.n.Y", $article['date']) ?><br>
+        Autor: <a href="/uzivatelia/<?= $article['author'] ?>"><?= $article['author'] ?></a>
+    </div>
 </div>
 
 <div id="comments-box">
@@ -46,15 +48,15 @@
             <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden>
             <input type="text" name="author" value="<?= $user ?>" hidden>
             <p> <i><?= $captcha['captcha'] ?></i> <input type="text" name="captchaAnswer" required> </p>
-            <textarea name="comment"><?php if(isset($_POST['comment'])) echo(htmlspecialchars($_POST['comment'])) ?></textarea><br>
+            <textarea name="comment" id="commentTextarea"><?php if(isset($_POST['comment'])) echo(htmlspecialchars($_POST['comment'])) ?></textarea><br>
 
-            <p>
-                <img src="/img/smiles/big-smile.gif" title=":D" alt="big smile">
-                <img src="/img/smiles/smile.gif" title=":)" alt="smile">
-                <img src="/img/smiles/wink.gif" title=";)" alt="wink">
-                <img src="/img/smiles/sad.gif" title=":(" alt="sad">
-                <img src="/img/smiles/surprised.gif" title=":o" alt="surprised">
-            </p>
+            <div id="emoticons">
+                <span title=":D"><img src="/img/smiles/big-smile.gif" alt=":D"></span>
+                <span title=":)"><img src="/img/smiles/smile.gif" alt=":)"></span>
+                <span title=";)"><img src="/img/smiles/wink.gif" alt=";)"></span>
+                <span title=":("><img src="/img/smiles/sad.gif" alt=":("></span>
+                <span title=":o"><img src="/img/smiles/surprised.gif" alt=":o"></span>
+            </div>
 
             <input type="submit" value="Odoslať komentár">
         </form>
@@ -63,3 +65,20 @@
 <?php } else { //ak nie je uzivatel prihlaseny ?>
     <p>Pre zapojenie sa do diskusie musíte byť <a href="/prihlasenie">prihlasený</a>.</p>
 <?php } ?>
+
+
+<!-- Javascript (emoticons) -->
+<script>
+    $('#emoticons span').click(function() {
+        var smiley = $(this).attr('title');
+        ins2pos(smiley, 'commentTextarea');
+    });
+
+    function ins2pos(str, id) {
+        var TextArea = document.getElementById(id);
+        var val = TextArea.value;
+        var before = val.substring(0, TextArea.selectionStart);
+        var after = val.substring(TextArea.selectionEnd, val.length);
+        TextArea.value = before + str + after;
+    }
+</script>

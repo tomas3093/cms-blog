@@ -47,13 +47,23 @@ class frontPageContentManager
         Database::querry('DELETE FROM short_news WHERE id = ?', array($id));
     }
 
+    //vrati najnovsie clanky
+    public function returnTopArticles()
+    {
+        return Database::querryAll('SELECT article_id, thumbnail_img, title, url, category, author, date, public
+                FROM articles
+                WHERE public = ?
+                ORDER BY article_id DESC LIMIT 10 OFFSET 0
+            ', array(1));
+    }
+
     //vrati najnovsie clanky z danej kategorie
     public function returnTopArticlesByCategory($category)
     {
-        return Database::querryAll('SELECT article_id, thumbnail_img, title, url, description, author, date, public
+        return Database::querryAll('SELECT article_id, thumbnail_img, title, url, category, author, date, public
                 FROM articles
                 WHERE public = ? and category = ?
-                ORDER BY article_id DESC LIMIT 3 OFFSET ?
-            ', array(1, $category, 0));
+                ORDER BY article_id DESC LIMIT 3 OFFSET 0
+            ', array(1, $category));
     }
 }

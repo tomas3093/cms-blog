@@ -22,12 +22,10 @@ class RouterController extends Controller
             $this->data['key_words'] = 'Programovanie, Novinky, Software, Hardware, Blog, Spravodajstvo';
             $this->data['description'] = 'blog, články o programovaní, novinky zo sveta IT, rôzne zaujímavosti';
             $this->data['messages'] = $this->returnMessages();
+            $this->data['topArticles'] = $articleManager->returnTopArticles();
+
             $this->data['shortMessages'] = $frontPageContentManager->returnShortMessages();
-            $this->data['novinkyCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('novinky');
-            $this->data['programovanieCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('programovanie');
-            $this->data['hardwareCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('hardware');
-            $this->data['softwareCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('software');
-            $this->data['ostatneCategoryArticles'] = $frontPageContentManager->returnTopArticlesByCategory('ostatne');
+            $this->data['topArticlesTiles'] = $frontPageContentManager->returnTopArticles();
 
             $this->view = 'frontPage';
         }
