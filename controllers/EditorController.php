@@ -91,12 +91,8 @@ class EditorController extends Controller
                     //ulozenie clanku do databazy
                     $articleManager->saveArticle($_POST['article_id'], $article);
                     $this->createMessage('Článok bol úspešne uložený', 'success');
-
-                    //ak clanok este nebol publikovany, presmeruj na nepublikovane clanky
-                    if($article['public'] == '0')
-                        $this->redirect('clanky/unpublished');
-                    else
-                        $this->redirect('clanky');
+                    //presmeruj na clanok
+                    $this->redirect('clanky/' . $article['url']);
                 }
                 catch(UserError $error)
                 {

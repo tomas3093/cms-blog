@@ -26,7 +26,7 @@ class KontaktController extends Controller
                 {
                     $emailSender->send('info@coding.wz.sk', 'Správa z webu', $message, $_POST['email']);
                     $this->createMessage('Správa bola úspešne odoslaná', 'success');
-                    $this->redirect('/');
+                    $this->redirect('');
                 }
                 else
                     throw new UserError('Chybne vyplnený antispam.');

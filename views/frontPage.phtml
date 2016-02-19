@@ -2,7 +2,6 @@
 
 <html lang="sk">
     <head>
-        <!--[if lt IE 9]><script src="js/html5shiv-printshiv.js"></script><![endif]-->
         <title><?= $title ?></title>
         <meta charset="UTF-8"/>
         <meta name="description" content="<?= $description ?>"/>
@@ -14,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="/css/responsive-nav.css">
         <link rel="stylesheet" type="text/css" href="/css/article.css">
         <script src="/js/responsive-nav.js"></script>
+        <!--[if lt IE 9]><script src="/js/html5shiv-printshiv.js"></script><![endif]-->
     </head>
 
     <body>
@@ -39,11 +39,11 @@
 
         <div class="page-wrap">
             <!-- OBSAH -->
-            <section id="content">
+            <section id="frontPageTiles-box">
                     <?php foreach($topArticlesTiles as $article) : ?>
 
                         <div class="articleTile-box">
-                            <a href="/clanky/<?= $article['url'] ?>"><img src="/<?= $article['thumbnail_img'] ?>" alt="" width="250"></a>
+                            <a href="/clanky/<?= $article['url'] ?>"><img src="/<?= $article['thumbnail_img'] ?>" alt="" height="100"></a>
 
                             <div class="articleTile-box-heading">
                                 <span><?= date("j.n.Y", $article['date']) ?> / <?= $article['category'] ?></span>
@@ -97,6 +97,14 @@
                 close: function(){} // Function: Close callback
             });
         </script>
+		
+		 <?php
+            define("_BBC_PAGE_NAME", "'" . $_SERVER["REQUEST_URI"] . "'");
+            define("_BBCLONE_DIR", "bbclone/");
+            define("COUNTER", _BBCLONE_DIR . "mark_page.php");
+            if (is_readable(COUNTER))
+                include_once(COUNTER);
+		?> 
 
     </body>
 </html>

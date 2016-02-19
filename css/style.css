@@ -37,6 +37,7 @@ body {
 }
 
 .mostReadBox-title {
+        text-align: center;
         font-size: 110%;
         background: #252525;
         color: white;

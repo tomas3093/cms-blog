@@ -4,15 +4,6 @@
 
 class Statistics
 {
-    public function returnUsersByArticles()
-    {
-        return Database::querryAll('
-          SELECT user_id, name, avatar, admin, registration_date, last_visit, comments, articles, sex, email
-          FROM users
-          ORDER BY articles DESC
-        ');
-    }
-
     public function returnArticlesByVisits()
     {
         return Database::querryAll('

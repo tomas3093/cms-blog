@@ -9,8 +9,6 @@ class StatistikyController extends Controller
         $validation = new Validation();
         $this->head['title'] = 'Štatistiky webu';
 
-        $this->data['usersByArticles'] = $statistics->returnUsersByArticles();
-
         $this->data['articlesByVisits'] = array();
         $articles = $statistics->returnArticlesByVisits();
         //skratenie titulkov jednotlivych clankov na 35 znakov

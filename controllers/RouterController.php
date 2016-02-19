@@ -24,8 +24,7 @@ class RouterController extends Controller
             $this->data['messages'] = $this->returnMessages();
             $this->data['topArticles'] = $articleManager->returnTopArticles();
 
-            $this->data['shortMessages'] = $frontPageContentManager->returnShortMessages();
-            $this->data['topArticlesTiles'] = $frontPageContentManager->returnTopArticles();
+            $this->data['topArticlesTiles'] = $frontPageContentManager->returnLastArticles();
 
             $this->view = 'frontPage';
         }

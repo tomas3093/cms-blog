@@ -10,34 +10,12 @@ class PanelController extends Controller
 
         $userManager = new UserManager();
         $noticeManager = new NoticeManager();
-        $frontPageContentManager = new frontPageContentManager();
 
         //zadane URL pre odhlasenie
         if(!empty($parameters[0]) && $parameters[0] == 'odhlasit')
         {
             $userManager->logOut();
             $this->redirect('prihlasenie');
-        }
-
-        //zadane URL pre pridanie kratkej spravy
-        if(!empty($parameters[0]) && $parameters[0] == 'kratka-sprava')
-        {
-            //overi ci je prihlaseny admin
-            $this->checkUser(true);
-
-            //ak bol odoslany formular pre kratke spravy
-            if(isset($_POST['shortMessageSubmit']))
-            {
-                $title = htmlspecialchars($_POST['title']);
-                $content = htmlspecialchars($_POST['content']);
-
-                $frontPageContentManager->addNewShortMessage($title, $content);
-                $this->createMessage('Krátka správa bola úspešne pridaná', 'success');
-                $this->redirect('panel');
-            }
-
-            $this->head['title'] = 'Krátka správa';
-            $this->view = 'shortNewsForm';
         }
 
         //zadane URL pre zobrazenie rozpisanych clankov redaktora alebo admina

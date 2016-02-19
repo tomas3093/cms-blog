@@ -3,7 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/controllers/KategoriaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/controllers/RouterController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/controllers/ShortnewsController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/controllers/SpravaController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/css/article.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/css/control-panel.css" charset="UTF-8" />
@@ -24,8 +23,5 @@
     <file url="file://$PROJECT_DIR$/views/message.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/views/messageForm.phtml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/views/myArticles.phtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/views/shortMessage.phtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/views/shortMessages.phtml" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/views/shortNewsForm.phtml" charset="UTF-8" />
   </component>
 </project>

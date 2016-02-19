@@ -52,6 +52,7 @@
         border: solid 1px #252525;
         border-radius: 5px;
         padding: 10px;
+        margin: 10px 0;
     }
 
     .articleList-title {
@@ -71,32 +72,4 @@
     .articleList-bottom {
         background-color: rgba(202, 202, 202, 0.86);
         padding: 3px;
-    }
-
-/* DLAZDICE NA UVODNEJ STRANE */
-
-    .articleTile-box {
-        display: inline-block;
-        text-align: center;
-        border: solid 1px #252525;
-        background-color: #fbfbfb;
-        padding-bottom: 10px;
-        margin: 10px;
-    }
-
-    .articleTile-box:hover {
-        border-color: #435fd7;
-    }
-
-    .articleTile-box-heading {
-        font-size: 75%;
-        text-align: left;
-        margin: 5px 5px 10px 5px;
-    }
-
-    .articleTile-box-title {
-        font-size: 160%;
-        text-align: center;
-        font-weight: bold;
-        padding: 0 5px;
     }
