@@ -4,29 +4,29 @@ $access =
   array(
     "time" =>
     array(
-      "reset" => 1455964855, "last" => 1456015974, 
+      "reset" => 1455964855, "last" => 1456016111, 
       "hour" =>
       array(
-        58, 66, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 65, 1, 0, 11, 0, 0, 0, 58, 20, 91, 0, 27
+        58, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 65, 1, 0, 11, 0, 0, 0, 58, 20, 91, 0, 27
       ),
       "wday" =>
       array(
-        124, 0, 0, 0, 0, 0, 288
+        125, 0, 0, 0, 0, 0, 288
       ),
       "day" =>
       array(
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 124, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 125, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       ),
       "month" =>
       array(
-        0, 412, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        0, 413, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
       )
     ),
     "page" =>
     array(
       "...39;/&#039;" =>
       array(
-        "count" => 18, "uri" => "/"
+        "count" => 19, "uri" => "/"
       ),
       "...39;/prihlasenie&#039;" =>
       array(
@@ -107,27 +107,27 @@ $access =
     ),
     "stat" =>
     array(
-      "totalvisits" => 412, "totalcount" => 356, 
+      "totalvisits" => 413, "totalcount" => 357, 
       "ext" =>
       array(
-        "unknown" => 356
+        "unknown" => 357
       ),
       "browser" =>
       array(
-        "chrome" => 356
+        "chrome" => 357
       ),
       "os" =>
       array(
-        "windows10" => 356
+        "windows10" => 357
       )
     ),
     "referer" =>
     array(
-      "not_specified" => 356
+      "not_specified" => 357
     ),
     "host" =>
     array(
-      "Acer" => 356
+      "Acer" => 357
     ),
     "bugs" =>
     array(

@@ -16,6 +16,7 @@ class ClankyController extends Controller
         if(!empty($parameters[0]) && ($parameters[0] != 'page') && ($parameters[0] != 'unpublished'))
             $article = $articleManager->returnArticle($parameters[0]);
 
+
         //nie je zadane url clanku, tak vypise zoznam clankov
         if(empty($parameters[0]))
         {
@@ -44,6 +45,7 @@ class ClankyController extends Controller
             $this->view = 'articles';
         }
 
+
         //ak je zadane URL pre zobrazenie nepublikovanych clankov
         if(!empty($parameters[0]) && $parameters[0] == 'unpublished')
         {
@@ -61,6 +63,7 @@ class ClankyController extends Controller
             );
             $this->view = 'articles';
         }
+
 
         //ak je zadane URL pre zobrazenie konkretnej strany
         if(!empty($parameters[0]) && $parameters[0] == 'page')
@@ -104,6 +107,7 @@ class ClankyController extends Controller
                 $this->redirect('clanky');
         }
 
+
         //ak je zadane URL pre zmazanie clanku
         if((!empty($parameters[1]) && $parameters[1] == 'odstranit') && ($parameters[0] != 'page'))
         {
@@ -125,6 +129,7 @@ class ClankyController extends Controller
             $this->redirect('clanky');
         }
 
+
         //ak je zadane URL pre publikovanie clanku
         if((!empty($parameters[1]) && $parameters[1] == 'publikovat') && ($parameters[0] != 'page'))
         {
@@ -139,6 +144,7 @@ class ClankyController extends Controller
             $this->redirect('clanky');
         }
 
+
         //ak je zadane URL pre zmazanie komentara
         if(!empty($parameters[0]) && !empty($parameters[1]) && $parameters[1] == 'odstranit-komentar' && !empty($parameters[2]))
         {
@@ -150,6 +156,7 @@ class ClankyController extends Controller
             $commentManager->deleteComment($parameters[2]);
             $this->createMessage('Komentár bol odstránený', 'success');
         }
+
 
         //ak je zadane URL clanku
         if(!empty($parameters[0]) && $parameters[0] != 'page' && ($parameters[0] != 'unpublished'))

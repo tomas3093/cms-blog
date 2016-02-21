@@ -56,11 +56,11 @@ class CommentManager
     //vlozi do komentara emotikony
     public function addEmoticons($text)
     {
-        $text = str_replace(':D', '<img src="/img/smiles/big-smile.gif">', $text);
-        $text = str_replace(':)', '<img src="/img/smiles/smile.gif">', $text);
-        $text = str_replace(':(', '<img src="/img/smiles/sad.gif">', $text);
-        $text = str_replace(array(':O', ':o'), '<img src="/img/smiles/surprised.gif">', $text);
-        $text = str_replace(';)', '<img src="/img/smiles/wink.gif">', $text);
+        $text = str_replace(':D', '<img src="/img/smiles/big-smile.gif" alt=":D">', $text);
+        $text = str_replace(':)', '<img src="/img/smiles/smile.gif" alt=":)">', $text);
+        $text = str_replace(':(', '<img src="/img/smiles/sad.gif" alt=":(">', $text);
+        $text = str_replace(array(':O', ':o'), '<img src="/img/smiles/surprised.gif" alt=":O">', $text);
+        $text = str_replace(';)', '<img src="/img/smiles/wink.gif" alt=";)">', $text);
 
         return $text;
     }

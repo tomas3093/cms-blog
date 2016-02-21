@@ -11,6 +11,7 @@ class UserManager
         return hash('sha256', $password . $salt);
     }
 
+
     //registracia noveho uzivatela do systemu
     public function register($name, $password, $password2, $email)
     {
@@ -25,33 +26,78 @@ class UserManager
         $date = new DateTime();
         $time = $date->getTimestamp();
 
+        //activation key
+        $key = md5(uniqid(rand(), true));
+
+        //data pre DB
         $user = array(
             'name' => $name,
             'password' => $this->returnHash($password),
             'registration_date' => $time,
             'last_visit' => $time,
-            'email' => $email
+            'email' => $email,
+            'activation_key' => $key
         );
+
+        //vlozenie dat do DB
         try
         {
             Database::insert('users', $user);
         }
         catch(PDOException $error)
         {
-            throw new UserError('Zadané meno alebo email sa už používa', 'warning');
+            throw new UserError('Zadané meno alebo email sa už používa');
+        }
+
+        //odoslanie aktivacneho emailu
+        try
+        {
+            $emailSender = new EmailSender();
+            $message = 'Dobrý deň,<br><br>';
+            $message .= 'pre dokončenie Vašej registrácie na stránke www.tomasblazy.com kliknite na nasledujúci link:<br><br>';
+            $message .= 'www.tomasblazy.com/registracia/' . $name . '/' . $key . '<br><br>';
+            $message .= 'V prípade, že ste o žiadnu registráciu nežiadali, tento email ignorujte.<br><br>';
+            $message .= 'Ďakujeme<br><br>Tím CodingBlog<br><a href="http://tomasblazy.com">tomasblazy.com</a>';
+
+            $emailSender->send($email, 'Aktivácia účtu na Coding Blog', $message, 'CodingBlog', 'noreply@tomasblazy.com');
+        }
+        catch(PDOException $error)
+        {
+            throw new UserError($error->getMessage(), 'warning');
         }
     }
+
+
+    //aktivuje uzivatelsky ucet
+    public function activateUserAccount($name, $key)
+    {
+        $user = Database::querryOne('
+            SELECT user_id
+            FROM users
+            WHERE name = ? AND activation_key = ?
+            ', array($name, $key));
+        if(!$user)
+            throw new UserError('Niekde nastala neočakávaná chyba.');
+
+        //aktivovanie uctu
+        $this->updateUserData($name, array('activation_key' => 1));
+    }
+
 
     //prihlasi uzivatela do systemu
     public function logIn($name, $password)
     {
         $user = Database::querryOne('
-            SELECT user_id, name, avatar, admin, registration_date, last_visit, comments, articles, sex, email
+            SELECT user_id, name, avatar, admin, registration_date, last_visit, comments, articles, sex, email, activation_key
             FROM users
             WHERE name = ? AND password = ?
             ', array($name, $this->returnHash($password)));
         if(!$user)
             throw new UserError('Nesprávne meno alebo heslo.');
+
+        //ak ucet existuje ale nie je aktivovany
+        if($user['activation_key'] != '1')
+            throw new UserError('Účet zatiaľ nie je aktivovaný.');
 
         //ulozenie prihlaseneho uzivatela do SESSION
         $_SESSION['user'] = $user;
@@ -63,11 +109,13 @@ class UserManager
         Database::update('users', $lastLogIn, 'WHERE name = ?', array($user['name']));
     }
 
+
     //odhlasi uzivatela
     public function logOut()
     {
         unset($_SESSION['user']);
     }
+
 
     //vrati aktualne prihlaseneho uzivatela
     public function returnUser()
@@ -76,6 +124,7 @@ class UserManager
             return $_SESSION['user'];
         return null;
     }
+
 
     //vrati meno aktualne prihlaseneho uzivatela a pripravi bocny panel
     public function returnUserName()
@@ -92,6 +141,7 @@ class UserManager
         return $string;
     }
 
+
     //vrati vsetkych registrovanych uzivatelov
     public function returnUsers()
     {
@@ -101,6 +151,7 @@ class UserManager
           ORDER BY user_id ASC
         ');
     }
+
 
     //vrati udaje o pozadovanom uzivatelovi
     public function returnUserInfo($user)
@@ -112,11 +163,13 @@ class UserManager
         ', array($user));
     }
 
+
     //vymaze uzivatela z databazy
     public function deleteUser($user)
     {
         Database::querry('DELETE FROM users WHERE name = ?', array($user));
     }
+
 
     //overi heslo aktualne prihlaseneho uzivatela
     public function checkPassword($name, $password)
@@ -131,6 +184,7 @@ class UserManager
             throw new UserError('Nesprávne heslo.');
         }
     }
+
 
     //ulozi aktualizovane udaje uzivatela
     public function updateUserData($name, $values = array())
@@ -149,6 +203,7 @@ class UserManager
             $_SESSION['user'] = $user;
         }
     }
+
 
     //aktualizuje pocet clankov a komentarov uzivatela
     public function getUserData($user)

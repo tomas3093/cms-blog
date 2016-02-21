@@ -45,9 +45,6 @@ class UzivateliaController extends Controller
                 else
                     $data['sex'] = 'žena';
 
-                //pole pre email
-                $data['email'] = $_POST['email'];
-
                 $userManager->updateUserData($user['name'], $data);    //zapis udajov uzivatela do DB
                 $this->createMessage('Nastavenia boli úspešne uložené.', 'success');
             }

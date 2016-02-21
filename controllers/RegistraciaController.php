@@ -7,6 +7,22 @@ class RegistraciaController extends Controller
             $userManager = new UserManager();
             $validation = new Validation();
 
+            //link na aktivaciu uctu
+            if(isset($parameters[1]))
+            {
+                try
+                {
+                    $userManager->activateUserAccount($parameters[0], $parameters[1]);
+                    $this->createMessage('Váš účet bol úspešne aktivovaný. Môžte pokračovať prihlásením', 'success');
+                    $this->redirect('prihlasenie');
+                }
+                catch(UserError $error)
+                {
+                    $this->createMessage($error->getMessage(), 'warning');
+                }
+            }
+
+            //ak bol odoslany formular s novou registraciou
             if($_POST)
             {
                 //odstranenie skodliveho kodu z antispam pola
@@ -21,8 +37,7 @@ class RegistraciaController extends Controller
                     if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $captchaAnswer))
                     {
                         $userManager->register($validUsername, $_POST['password'], $_POST['password2'], $_POST['email']);
-                        $this->createMessage('Pokračujte tým, že sa prihlásite.', 'info');
-                        $this->createMessage('Boli ste úspešne zaregistrovaný.', 'success');
+                        $this->createMessage('Email pre aktiváciu účtu Vám bol úspešne zaslaný', 'success');
                         $this->redirect('prihlasenie');
                     }
                     else
