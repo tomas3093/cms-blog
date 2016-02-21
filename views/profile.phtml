@@ -1,58 +1,68 @@
-<h1>Užívateľský profil</h1>
+<div class="category"><a href="/">Domov </a></div>
 
 <?php if($user == $loggedUser['name']) { //zobrazenie nastaveni prihlaseneho uzivatela ?>
-    <h3>Nastavenia</h3>
-    <p>Tu môžete upraviť nastavenia vášho profilu</p>
+    <h1>Užívateľské nastavenia</h1>
 
     <!-- vlastnost enctype - specifies which content-type to use when submitting the form -->
     <form action="" method="post" enctype="multipart/form-data">
-        <h4>Profilový obrázok</h4>
-        <img id="avatar" src="/<?= $avatar ?>" alt=""><br><br>
-        <i class="fa fa-upload"></i>
-        <input type="file" size="32" name="image_field">
-        <input type="submit" value="Nahrať obrázok" name="uploadImage">
+        <div class="box">
+            <div class="responsive-form">
+                <h2>Profilový obrázok</h2>
+                <span><img id="avatar" src="/<?= $avatar ?>" alt="<?= $loggedUser['name'] ?> profile avatar"></span>
+                <i class="fa fa-upload"></i>
+                <input type="file" size="32" name="image_field">
+            </div>
+
+            <input type="submit" value="Nahrať obrázok" name="uploadImage">
+        </div>
     </form>
+
 
     <form action="" method="post">
+        <div class="responsive-form">
+            <div class="box">
+                <h2>Pohlavie</h2>
+                <span>Muž</span>
+                <input type="radio" name="sex" value="male" <?php if($sex == 'muž') echo('checked'); ?> >
+                <span>Žena</span>
+                <input type="radio" name="sex" value="female" <?php if($sex == 'žena') echo('checked'); ?> >
+            </div>
 
-         <h4>Pohlavie</h4>
-         <input type="radio" name="sex" value="male" <?php if($sex == 'muž') echo('checked'); ?> > Muž<br>
-         <input type="radio" name="sex" value="female" <?php if($sex == 'žena') echo('checked'); ?> >Žena
+            <div class="box">
+                <h2>Zmena hesla</h2>
+                <span>Staré heslo</span>
+                <input type="password" name="old">
 
-         <h4>Zmena hesla</h4>
-         <table>
-             <tr>
-                 <td>Staré heslo</td>
-                 <td><input type="password" name="old"></td>
-             </tr>
-             <tr>
-                 <td>Nové heslo</td>
-                 <td><input type="password" name="password"></td>
-             </tr>
-             <tr>
-                 <td>Heslo znovu</td>
-                 <td><input type="password" name="password2"></td>
-             </tr>
-         </table>
+                <span>Nové heslo</span>
+                <input type="password" name="password">
 
-         <h4>Zmena e-mailu</h4>
-         <i class="fa fa-envelope-o fa-fw"></i><input type="email" name="email" value="<?= $email ?>" placeholder="E-mail">
+                <span>Heslo znovu</span>
+                <input type="password" name="password2">
+            </div>
 
-         <input type="submit" name="submit" value="Uložiť"><br>
-         <a href="#"><i class="fa fa-trash"></i> Odstrániť účet</a>
+            <div class="box">
+                <h2>Zmena e-mailu</h2>
+                <span><i class="fa fa-envelope-o fa-fw"></i> Email</span>
 
+                <input type="email" name="email" value="<?= $email ?>" placeholder="E-mail" required>
+            </div>
+
+            <div class="box">
+                <span><a href="#"><i class="fa fa-trash fa-2x"></i> Odstrániť účet</a></span>
+            </div>
+        </div>
+
+         <input type="submit" name="submit" value="Uložiť nastavenia">
     </form>
+
 
 <?php } else { //zobrazenie prehladu profilu ineho pouzivatela ?>
 
-    <h2><?= $user ?></h2>
+    <h1><?= $user ?></h1>
 
-    <table>
-        <tr>
-            <td><img id="avatar" src="/<?= $avatar ?>" alt=""></td>
-            <td></td>
-        </tr>
+    <div class="center"><img id="avatar" src="/<?= $avatar ?>" alt="<?= $user ?> profile avatar"></div>
 
+    <table class="responsive-table">
         <tr>
             <td>Hodnosť</td>
             <td><?= $userRank ?></td>
@@ -72,13 +82,6 @@
             <td>Pohlavie</td>
             <td><?= $sex ?></td>
         </tr>
-
-        <?php if(!empty($email)) : //ak uzivatel uviedol email ?>
-            <tr>
-                <td>Email</td>
-                <td><?= $email ?></td>
-            </tr>
-        <?php endif ?>
 
         <tr>
             <td>Registrovaný</td>

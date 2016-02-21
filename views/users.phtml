@@ -1,23 +1,28 @@
+<div class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/panel"> Ovládací panel</a> </div>
+
 <h1>Správa užívateľov</h1>
 
-<table>
+<table class="responsive-table">
     <tr>
-        <th>Uzivatel</th>
+        <th>ID</th>
+        <th>Užívateľ</th>
         <th>Hodnosť</th>
-        <td></td>
+        <th></th>
+        <th></th>
     </tr>
     <?php if($admin) : ?>
         <?php foreach ($users as $user) : ?>
             <tr>
+                <td><?= $user['user_id'] ?>.</td>
                 <td><a href="uzivatelia/<?= $user['name'] ?>"><?= $user['name'] ?></a></td>
                 <td><?= $user['rank'] ?></td>
 
                 <?php if($user['name'] != $loggedUser['name']) : #zabranenie odstranenia prihlaseneho uzivatela ?>
                     <td><a href="uzivatelia/<?= $user['name'] ?>/zmenit-opravnenie" title="Zmeniť oprávnenie"
-                           onclick="return confirm('Naozaj chcete zmeniť oprávnenie užívateľa?');"><i class="fa fa-user"></i></a>
+                           onclick="return confirm('Naozaj chcete zmeniť oprávnenie užívateľa?');"><i class="fa fa-user fa-2x"></i></a>
                     </td>
                     <td><a href="uzivatelia/<?= $user['name'] ?>/odstranit" title="Odstrániť užívateľa"
-                           onclick="return confirm('Naozaj chcete odstrániť užívateľa?');"><i class="fa fa-trash-o fa-fw"></i></a>
+                           onclick="return confirm('Naozaj chcete odstrániť užívateľa?');"><i class="fa fa-trash-o fa-fw fa-2x"></i></a>
                     </td>
                 <?php endif ?>
             </tr>

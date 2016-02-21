@@ -161,7 +161,7 @@ class bbc_html {
           ."\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
           ."<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
           ."<head>\n"
-          ."<title>BBClone $BBC_VERSION $BBC_EXT_LOOKUP</title>\n"
+          ."<title>BBClone Stats</title>\n"
           ."<link rel=\"shortcut icon\" href=\"".$BBC_IMAGES_PATH."favicon.ico\" />\n"
           ."<link rel=\"stylesheet\" href=\"".$BBC_CSS_PATH.$BBC_CSS_FILE."\" type=\"text/css\" />\n"
           ."<meta http-equiv=\"cache-control\" content=\"no-cache\" />\n"
@@ -288,12 +288,6 @@ class bbc_html {
 
   return "<p><a href=\"http://www.bbclone.de/\">BBClone ".$BBC_VERSION.$BBC_BUILD." ".$BBC_EXT_LOOKUP."</a>&nbsp;&copy;&nbsp;".$translation['global_bbclone_copyright']
         ."&nbsp;<a href=\"http://www.gnu.org/copyleft/gpl.html\">GPL</a>\n"
-        ."&nbsp;<a href=\"http://validator.w3.org/check?url=referer\">"
-        ."<img src=\"".$BBC_IMAGES_PATH."valid-xhtml10.png\" class=\"validicon\" alt=\"Valid XHTML 1.0!\" title=\"Valid XHTML 1.0!\" /></a>\n"
-        ."&nbsp;<a href=\"http://jigsaw.w3.org/css-validator/check/referer\">"
-        ."<img src=\"".$BBC_IMAGES_PATH."valid-css.png\" class=\"validicon\" alt=\"Valid CSS!\" title=\"Valid CSS!\" /></a>\n"
-        ."&nbsp;<a href=\"http://tidy.sourceforge.net\">"
-        ."<img src=\"".$BBC_IMAGES_PATH."valid-tidy.png\" class=\"validtidy\" alt=\"Valid HTML Tidy!\" title=\"Valid HTML Tidy!\" /></a></p>\n"
         ;
   }
 

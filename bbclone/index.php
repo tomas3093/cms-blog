@@ -18,7 +18,10 @@
  * See doc/copying.txt for details
  */
 
-if(!defined("_BBC_PAGE_NAME")){define("_BBC_PAGE_NAME", "BBClone - Start Page");}
-// Show by default the Global Stats
-if (is_readable("show_global.php")) include_once("show_global.php");
-?>
+
+	if(!defined("_BBC_PAGE_NAME"))
+			define("_BBC_PAGE_NAME", "BBClone - Start Page");
+
+	// Show by default the Global Stats
+	if (is_readable("show_global.php"))
+		include_once("show_global.php");

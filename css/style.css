@@ -12,6 +12,10 @@ body {
         margin: 0 auto;
 }
 
+.center {
+        text-align: center;
+}
+
 .category {
         font-size: 85%;
         font-style: oblique;

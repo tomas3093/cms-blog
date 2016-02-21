@@ -1,19 +1,29 @@
-<form method="post">
+<div class="category"><a href="/">Domov </a></div>
 
-    <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden>
-    <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden>
+<h1>Registrácia</h1>
 
-    <fieldset>
-        <legend>Registrácia</legend>
-        <p><input type="text" name="name" placeholder="Meno" value="<?= $name ?>" required> </p>
-        <p><input type="password" name="password" placeholder="Heslo (min. 5 znakov)" required> </p>
-        <p><input type="password" name="password2" placeholder="Heslo znova" required> </p>
-        <p><input type="email" name="email" placeholder="E-mail (nepovinné)"> </p>
-        <p>
-            <i><?= $captcha['captcha'] ?></i><br>
+<form method="post" action="#">
+
+    <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden="hidden">
+    <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden="hidden">
+
+    <div class="responsive-form">
+        <span>Meno</span>
+        <input type="text" name="name" placeholder="min. 4 znaky" value="<?= $name ?>" required>
+        <span>Heslo</span>
+        <input type="password" name="password" placeholder="min. 5 znakov" required>
+        <span>Heslo znova</span>
+        <input type="password" name="password2" required>
+        <span>Email</span>
+        <input type="email" name="email" placeholder="E-mail" value="<?= $email ?>" required>
+    </div>
+
+    <div class="captcha-box">
+        <span>
+            Ochrana proti spamu. Napíš výsledok číslom<br><i><?= $captcha['captcha'] ?></i>
             <input type="text" name="captchaAnswer" required>
-        </p>
-    </fieldset>
+        </span>
+    </div>
 
     <input type="submit" value="Registrovať">
 

@@ -1,6 +1,100 @@
-textarea {
-    border-radius: 5px;
-    border: 1px solid #aaaaaa;
-    width: 90%;
-    height: 90px;
+/* FORMULARE */
+
+form {
+    text-align: center;
+}
+
+.responsive-commentForm {
+    margin-bottom: 20px;
+}
+
+.responsive-commentForm input {
+    width: 80%;
+    height: 1.5em;
+    margin: 5px auto 15px auto;
+}
+
+.responsive-commentForm textarea {
+    width: 80%;
+    margin: 5px auto;
+}
+
+.responsive-commentForm span.label {
+    display: block;
+    margin: 10px 0;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.responsive-form span {
+    display: block;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.responsive-form input {
+    width: 60%;
+    height: 1.5em;
+    margin: 5px auto 20px auto;
+}
+
+.responsive-form textarea {
+    width: 60%;
+    margin: 5px auto 20px auto;
+}
+
+input[type="submit"] {
+    display: block;
+    width: auto;
+    background-color: #252525;
+    color: white;
+    font-size: 110%;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 25px auto;
+}
+
+input[type="submit"]:hover {
+    color: rgba(239, 239, 239, 0.86);
+}
+
+/* BOX FORMULARE */
+
+.box {
+    border: solid 1px #252525;
+    margin: 20px 0;
+    padding: 5px;
+}
+
+/* CAPTCHA BOX */
+
+.captcha-box {
+    display: block;
+    text-align: center;
+}
+
+.captcha-box span {
+    display: block;
+    font-size: 90%;
+    line-height: 1.5em;
+}
+
+.captcha-box input {
+    width: 3.5em;
+}
+
+/* TABULKY */
+
+.responsive-table {
+    width: 100%;
+    padding: 10px;
+}
+
+.responsive-table th {
+    text-align: left;
+}
+
+.responsive-table tr:hover {
+    background-color: rgba(235, 235, 235, 0.86);
 }

@@ -1,0 +1,4 @@
+AuthName "Secure Area"
+AuthType Basic
+AuthUserFile D:\Program files\wamp\www\.htpasswd
+require valid-user

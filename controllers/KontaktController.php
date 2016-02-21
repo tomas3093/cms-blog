@@ -36,6 +36,14 @@ class KontaktController extends Controller
                 $this->createMessage($error->getMessage(), 'warning');
             }
         }
+        //ak bol odoslany formular, zachovanie vyplnenej spravy a emailu
+        $this->data['message'] = '';
+        if(isset($_POST['message']))
+            $this->data['message'] = $_POST['message'];
+        $this->data['email'] = '@';
+        if(isset($_POST['email']))
+            $this->data['email'] = $_POST['email'];
+
         //vytvorenie antispam otazky
         $this->data['captcha'] = $validation->returnCaptcha();
         //nastavenie sablony

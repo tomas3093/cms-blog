@@ -1,3 +1,22 @@
+<div class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/panel"> Ovládací panel</a> </div>
+
+<h1>Nová správa</h1>
+
+<form action="#" method="post">
+
+    <div class="responsive-form">
+        <span>Príjemca</span>
+        <input type="text" name="recipient" id="prijemca" required>
+        <span>Predmet</span>
+        <input type="text" name="subject" required>
+        <span>Správa</span>
+        <textarea name="message" id="sprava"></textarea>
+    </div>
+
+    <input type="submit" name="messageSubmit" value="Odoslať správu">
+</form>
+
+
 <!--autocomplete script-->
 <script type="text/javascript">
     $(function() {
@@ -12,13 +31,3 @@
         });
     });
 </script>
-
-<br>
-<form action="" method="post">
-    <h1>Nová správa</h1>
-
-    <p><input type="text" name="recipient" id="prijemca" placeholder="Príjemca" required></p>
-    <p><input type="text" name="subject" placeholder="Predmet" required></p>
-    <p><textarea name="message" id="sprava"></textarea></p>
-    <p><input type="submit" name="messageSubmit" value="Odoslať správu"></p>
-</form>

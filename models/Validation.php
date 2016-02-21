@@ -96,14 +96,19 @@ class Validation
     //validacia uzivatelskeho mena
     public function checkUsername($username)
     {
-        if(empty($username))
-            throw new UserError('Zadajte používateľské meno!');
-
-        $username = strip_tags($username);
+        $username = htmlspecialchars($username);
 
         //test retazca pomocou regularneho vyrazu (1. musi zacinat pismenom, 2. dlzka 4 - 32 znakov, 3. obsahuje iba pismena a cisla)
         if(!preg_match('/^[A-Za-z][A-Za-z0-9]{3,31}$/', $username))
-            throw new UserError('Používateľské meno obsahuje nepovolené znaky alebo je v nesprávnom tvare!');
+        {
+            if(is_numeric($username[0]))
+                throw new UserError('Používateľské meno musí začínať písmenom!');
+
+            if((strlen($username) < 4) || (strlen($username) > 32))
+                throw new UserError('Používateľské meno musí mať dĺžku 4 - 32 znakov!');
+
+            throw new UserError('Používateľské meno obsahuje nepovolené znaky!');
+        }
 
         return $username;
     }

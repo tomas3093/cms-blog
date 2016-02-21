@@ -38,7 +38,7 @@ $BBC_MAINSITE = "..";
 // Syntax:
 // $BBC_SHOW_CONFIG = 1;      => Display show_config.php
 // $BBC_SHOW_CONFIG = "";     => Don't display show_config.php (Default)
-$BBC_SHOW_CONFIG = "1";
+$BBC_SHOW_CONFIG = "";
 
 // The title being displayed in the navigation bar of all bbclone pages.
 // The following macros are recognised:
@@ -57,7 +57,7 @@ $BBC_TITLEBAR = "";
 // The following languages are supported:
 // ar, bg, bs, ca, cs, da, de, el, en, es, fi, fr, hu, id, it, ja, ko, lt, mk,
 // nb, nl, pl, pt, pt-br, ro, ru, sk, sl, sv, th, tr, ua, zh-cn and zh-tw.
-$BBC_LANGUAGE = "sk";
+$BBC_LANGUAGE = "en";
 
 // This variable defines the length of an unique visit in seconds. Each hit from the same visitor
 // within this period will be considered as one visit, as long as two successive hits don't exceed
@@ -105,7 +105,7 @@ $BBC_MAXPAGE = 10;            // Pages (reset possible)
 // Syntax:
 // $BBC_DETAILED_STAT_FIELDS = "id, time, visits, ip, ext, os, browser";
 // $BBC_DETAILED_STAT_FIELDS = "date, ext, browser, os, ip";
-$BBC_DETAILED_STAT_FIELDS = "id, time, ext, dns, visits, os, browser, referer, ip";
+$BBC_DETAILED_STAT_FIELDS = "id, time, ext, dns, visits, os, browser, referer";
 
 // Part II: Options affecting BBClone's functionality
 
@@ -135,7 +135,7 @@ $BBC_TIME_OFFSET = 0;
 // Syntax:
 // $BBC_NO_DNS = "";          => Resolve addresses to hostnames (Default)
 // $BBC_NO_DNS = 1;           => Turn off name resolving
-$BBC_NO_DNS = "";
+$BBC_NO_DNS = "1";
 
 // This options defines, whether IP addresses are looked up to determine location (country).
 // Please read the terms of use and privacy policy of the provider before using this!
@@ -206,7 +206,7 @@ $BBC_DEBUG = "";
 // Syntax:
 // $BBC_CUSTOM_CHARSET = "UTF-8";  => Use UTF-8 as encoding
 // $BBC_CUSTOM_CHARSET = "";       => Use the default charset of the translation
-$BBC_CUSTOM_CHARSET = "UTF-8";
+$BBC_CUSTOM_CHARSET = "";
 
 // BBClone CSS File Name
 // Please note; Within this css file you can change the way BBClone looks
@@ -217,7 +217,7 @@ $BBC_CSS_FILE = "bbclone.css";
 // Syntax:
 // $BBC_LOADTIME = "";       => No load-time generated (Default)
 // $BBC_LOADTIME = 1;        => Generate load-time at bottom of the page
-$BBC_LOADTIME = "";
+$BBC_LOADTIME = "1";
 
 // With this option you can enable whois search in Detailed Stats
 //
@@ -266,7 +266,7 @@ $BBC_USE_ORIGINAL_URI = "";
 //                so you may need to reset the stats.
 // Syntax:
 // $BBC_MAX_PAGENAME = 60;	=> 60 characters (default)
-$BBC_MAX_PAGENAME = 80;
+$BBC_MAX_PAGENAME = 60;
 
-$BBC_KILL_STATS = ""; //zmaze udaje $BBC_KILL_STATS = 1;
 //
+?>

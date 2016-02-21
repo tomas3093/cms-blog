@@ -1,10 +1,34 @@
-<fieldset>
-    <legend>Správa</legend>
-    <p>
-        (<i><?= date("j.n.Y H:i", $message['date']) ?></i>)<br>
-        Od: <a href="/uzivatelia/<?= $message['sender'] ?>"> <?= $message['sender'] ?></a><br>
-        Komu: <a href="/uzivatelia/<?= $message['recipient'] ?>"> <?= $message['recipient'] ?></a><br>
-        Predmet: <strong><?= $message['subject'] ?></strong>
-    </p>
+<div class="category"><a href="/">Domov </a> <i class="fa fa-angle-double-right"></i><a href="/panel"> Ovládací panel</a> </div>
+
+
+<h1>Správa</h1>
+
+<div class="box">
+    <table class="responsive-table">
+        <tr>
+            <td><i class="fa fa-clock-o"></i></td>
+            <td><?= date("j.n.Y H:i", $message['date']) ?></td>
+        </tr>
+
+        <tr>
+            <th>Od:</th>
+            <td><a href="/uzivatelia/<?= $message['sender'] ?>"> <?= $message['sender'] ?></a></td>
+        </tr>
+
+        <tr>
+            <th>Komu:</th>
+            <td><a href="/uzivatelia/<?= $message['recipient'] ?>"> <?= $message['recipient'] ?></a></td>
+        </tr>
+
+        <tr>
+            <th>Predmet:</th>
+            <td><?= $message['subject'] ?></td>
+        </tr>
+    </table>
+</div>
+
+<div class="box">
+    <p><strong>Správa:</strong></p>
     <p><?= $message['message'] ?></p>
-</fieldset>
+</div>
+

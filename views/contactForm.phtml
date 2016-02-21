@@ -1,13 +1,24 @@
-<form method="post">
+<div class="category"><a href="/">Domov </a></div>
 
-    <input type="text" name="captchaNumber1" value="<?= $captcha['number1'] ?>" hidden>
-    <input type="text" name="captchaNumber2" value="<?= $captcha['number2'] ?>" hidden>
+<form method="post" action="#">
 
-    <fieldset>
-        <legend>Kontaktujte nás</legend>
-        <p><input type="email" name="email" value="<?php if(isset($_POST['email'])) echo(htmlspecialchars($_POST['email'])); ?>" placeholder="Vaša emailová adresa" required></p>
-        <p><textarea name="message"><?php if(isset($_POST['message'])) echo(htmlspecialchars($_POST['message'])) ?></textarea></p>
-        <p> <i><?= $captcha['captcha'] ?></i> <input type="text" name="captchaAnswer" required> </p>
-        <p><input type="submit" value="Odoslať"></p>
-    </fieldset>
+    <input type="hidden" name="captchaNumber1" value="<?= $captcha['number1'] ?>" >
+    <input type="hidden" name="captchaNumber2" value="<?= $captcha['number2'] ?>" >
+
+    <h1>Kontaktujte nás</h1>
+
+    <div class="responsive-form">
+        <span>Vaša emailová adresa</span>
+        <input type="email" name="email" value="<?= $email ?>" required></p>
+        <span>Vaša správa</span>
+        <textarea name="message"><?= $message ?></textarea>
+    </div>
+
+    <div class="captcha-box">
+            <span>
+                Ochrana proti spamu. Napíš výsledok číslom<br><i><?= $captcha['captcha'] ?></i>
+                <input type="text" name="captchaAnswer" required>
+            </span>
+    </div>
+    <input type="submit" value="Odoslať">
 </form>

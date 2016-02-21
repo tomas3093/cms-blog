@@ -21,8 +21,8 @@ class RegistraciaController extends Controller
                     if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $captchaAnswer))
                     {
                         $userManager->register($validUsername, $_POST['password'], $_POST['password2'], $_POST['email']);
-                        $this->createMessage('Boli ste úspešne zaregistrovaný.', 'success');
                         $this->createMessage('Pokračujte tým, že sa prihlásite.', 'info');
+                        $this->createMessage('Boli ste úspešne zaregistrovaný.', 'success');
                         $this->redirect('prihlasenie');
                     }
                     else
@@ -33,10 +33,14 @@ class RegistraciaController extends Controller
                     $this->createMessage($error->getMessage(), 'warning');
                 }
             }
-            //ak bol odoslany formular, zachovanie vyplneneho mena
+            //ak bol odoslany formular, zachovanie vyplneneho mena a emailu
             $this->data['name'] = '';
             if(isset($_POST['name']))
                 $this->data['name'] = $_POST['name'];
+            $this->data['email'] = '@';
+            if(isset($_POST['email']))
+                $this->data['email'] = $_POST['email'];
+
 
             $this->data['captcha'] = $validation->returnCaptcha();  //antispam otazka
 

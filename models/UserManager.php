@@ -38,7 +38,7 @@ class UserManager
         }
         catch(PDOException $error)
         {
-            throw new UserError('Zadané meno sa už používa.');
+            throw new UserError('Zadané meno alebo email sa už používa', 'warning');
         }
     }
 
@@ -51,7 +51,7 @@ class UserManager
             WHERE name = ? AND password = ?
             ', array($name, $this->returnHash($password)));
         if(!$user)
-            throw new UserError('Neplatné meno alebo heslo.');
+            throw new UserError('Nesprávne meno alebo heslo.');
 
         //ulozenie prihlaseneho uzivatela do SESSION
         $_SESSION['user'] = $user;
