@@ -8,8 +8,10 @@ class PanelController extends Controller
         //do control panela maju pristup len prihlaseny uzivatelia
         $this->checkUser();
 
-        $userManager = new UserManager();
         $noticeManager = new NoticeManager();
+        $userManager = new UserManager();
+
+        $loggedUser = $userManager->returnUser();
 
         //zadane URL pre odhlasenie
         if(!empty($parameters[0]) && $parameters[0] == 'odhlasit')
@@ -21,7 +23,6 @@ class PanelController extends Controller
         //zadane URL pre zobrazenie rozpisanych clankov redaktora alebo admina
         if(!empty($parameters[0]) && $parameters[0] == 'moje-clanky')
         {
-            $loggedUser = $userManager->returnUser();
             //ak je prihlaseny redaktor alebo admin
             if(($loggedUser['admin'] == 1) || ($loggedUser['admin'] == 2))
             {
@@ -68,6 +69,19 @@ class PanelController extends Controller
             //odstran oznam s danym ID
             $noticeManager->removeNotice($parameters[0]);
             $this->redirect('panel');
+        }
+
+        //ak je zadane URL pre odstranenie uzivatelskeho uctu
+        if(!empty($parameters[1]) && $parameters[1] == 'odstranit-ucet')
+        {
+            if($parameters[0] == $loggedUser['name'])
+                $userManager->deleteUser($parameters[0]);
+            else
+                $this->redirect('chyba');
+
+            $this->createMessage('Váš účet bol odstránený zo systému. Ďakujeme', 'warning');
+            $userManager->logOut();
+            $this->redirect('');
         }
 
         //zadane URL pre zobrazenie control panelu

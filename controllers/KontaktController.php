@@ -24,7 +24,7 @@ class KontaktController extends Controller
                 //ak bol spravne vyplneny antispam
                 if($validation->checkCaptcha($_POST['captchaNumber1'], $_POST['captchaNumber2'], $captchaAnswer))
                 {
-                    $emailSender->send('info@coding.wz.sk', 'Správa z webu', $message, $_POST['email']);
+                    $emailSender->send('info@tomasblazy.com', 'Správa z webu', $message, $_POST['email']);
                     $this->createMessage('Správa bola úspešne odoslaná', 'success');
                     $this->redirect('');
                 }

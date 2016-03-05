@@ -2,10 +2,26 @@
 
 <h1>Štatistiky</h1>
 
-<h2><a href="//stats.tomasblazy.com">BBClone</a></h2>
+<div class="controlPanelMenu-box">
+    <h2 class="controlPanel-title">MENU</h2>
 
-<h3>Články podľa návštevnosti</h3>
-<table class="responsive-table">
+    <div class="controlPanelItem-box">
+        <a href="//stats.tomasblazy.com">
+            <div class="controlPanelMenu-icon"><i class="fa fa-area-chart fa-4x"></i></div>
+            <div class="controlPanelMenu-label">Kompletné štatistiky</div>
+        </a>
+    </div>
+
+    <div class="controlPanelItem-box">
+        <a href="#" id="article-stats">
+            <div class="controlPanelMenu-icon"><i class="fa fa-bar-chart fa-4x"></i></div>
+            <div class="controlPanelMenu-label">Články</div>
+        </a>
+    </div>
+</div>
+
+
+<table class="responsive-table" id="stats-table">
     <tr>
         <th>Článok</th>
         <th>Zobrazenia</th>
@@ -17,4 +33,13 @@
         </tr>
     <?php endforeach ?>
 </table>
+
+
+
+<!-- Javascript -->
+<script>
+    $("#article-stats").click(function(){
+        $("#stats-table").toggle(200);
+    });
+</script>
 

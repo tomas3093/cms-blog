@@ -95,6 +95,13 @@
 }
 
 
+/* STATISTIKY */
+
+#stats-table {
+    display: none;
+}
+
+
 /* FOR DESKTOPS */
 
 @media screen and (min-width: 780px) {

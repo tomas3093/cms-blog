@@ -1,8 +1,9 @@
 <div class="category"><a href="/">Domov </a></div>
 
-<h1>Ovládací panel</h1>
 
 <?php if($admin == '1') : #ak je prihlaseny admin ?>
+
+    <h1>Administračný panel</h1>
 
     <div class="controlPanelMenu-box">
         <h2 class="controlPanel-title">MENU</h2>
@@ -87,6 +88,8 @@
 
 <?php if($admin == '2') : #ak je prihlaseny redaktor ?>
 
+    <h1>Panel redaktora</h1>
+
     <div class="controlPanelMenu-box">
         <h2 class="controlPanel-title">MENU</h2>
 
@@ -116,6 +119,8 @@
 
 
 <?php if($admin == '0') : #ak je prihlaseny clen ?>
+
+    <h1>Užívateľský panel</h1>
 
     <div class="controlPanelMenu-box">
         <h2 class="controlPanel-title">MENU</h2>

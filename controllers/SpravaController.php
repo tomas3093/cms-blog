@@ -27,6 +27,12 @@ class SpravaController extends Controller
             $autocompleteSource = rtrim($autocompleteSource, ", ");
             $this->data['autocompleteSource'] = $autocompleteSource;
 
+            //ak bol zadany prijemca v URL
+            if(!empty($parameters[1]))
+                $this->data['recipient_url'] = strip_tags($parameters[1]);
+            else
+                $this->data['recipient_url'] = '';
+
             $this->head['title'] = 'Nová správa';
             $this->view = 'messageForm';
         }
@@ -53,7 +59,7 @@ class SpravaController extends Controller
             if($message && (($message['sender'] == $loggedUser['name']) || ($message['recipient'] == $loggedUser['name'])))
             {
                 //pri prvom otvoreni, oznac spravu ako precitanu
-                if($message['unread'] == 1)
+                if(($message['unread'] == 1) && ($message['recipient'] == $loggedUser['name']))
                     $messageManager->readMessage($message['message_id']);
 
                 $this->head['title'] = 'Správa - ' . $message['subject'];

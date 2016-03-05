@@ -20,6 +20,12 @@
 
     <form action="" method="post">
         <div class="responsive-form">
+
+            <div class="box">
+                <h2><i class="fa fa-envelope-o fa-fw"></i> <?= $email ?></h2>
+                <h2><i class="fa fa-user fa-fw"></i> <?= $userRank ?></h2>
+            </div>
+
             <div class="box">
                 <h2>Pohlavie</h2>
                 <span>Muž</span>
@@ -40,13 +46,12 @@
                 <input type="password" name="password2">
             </div>
 
-            <div class="box">
-                <h2>E-mail</h2>
-                <span><i class="fa fa-envelope-o fa-fw"></i> <?= $email ?></span>
-            </div>
+
 
             <div class="box">
-                <span><a href="#"><i class="fa fa-trash fa-2x"></i> Odstrániť účet</a></span>
+                <span><a href="/panel/<?= $loggedUser['name'] ?>/odstranit-ucet"
+                         onclick="return confirm('Naozaj chcete natrvalo odstrániť svoj účet? Táto akcia je nevratná.');">
+                        <i class="fa fa-trash fa-2x"></i> Odstrániť účet</a></span>
             </div>
         </div>
 
@@ -61,6 +66,14 @@
     <div class="center"><img id="avatar" src="/<?= $avatar ?>" alt="<?= $user ?> profile avatar"></div>
 
     <table class="responsive-table">
+
+        <?php if(isset($loggedUser['name'])) : //ak je prihlaseny uzivatel ?>
+            <tr>
+                <td><a href="/sprava/vytvorit/<?= $user ?>"><i class="fa fa-envelope-o fa-fw"></i> Napísať správu</a> </td>
+                <td></td>
+            </tr>
+        <?php endif ?>
+
         <tr>
             <td>Hodnosť</td>
             <td><?= $userRank ?></td>

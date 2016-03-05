@@ -4,27 +4,25 @@
 
 <?php foreach ($userArticles as $article) : ?>
 
-    <div class="article-box">
-        <div class="heading">
+    <div class="articleList-box">
+        <h2 class="articleList-title"><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h2>
+        <div class="articleList-heading">
             <i class="fa fa-calendar"></i> <?= date("j.n.Y", $article['date']) ?>
-            <i class="fa fa-user"></i> <?= $article['author'] ?>
+            <i class="fa fa-user"></i> <?= $article['author'] ?><br>
         </div>
 
-        <div class="thumbnail-box">
-            <span class="box-center"></span> <a href="/clanky/<?= $article['url'] ?>"><img class="articleThumb" src="/<?= $article['thumbnail_img'] ?>"></a>
+        <div class="articleList-container">
+            <a href="/clanky/<?= $article['url'] ?>"><img src="/<?= $article['thumbnail_img'] ?>" alt=""></a>
+            <span class="articleList-text"><?= $article['description'] ?></span>
         </div>
+        <div class="clear"></div>
 
-        <div class="article">
-            <h1><a href="/clanky/<?= $article['url'] ?>"><?= $article['title'] ?></a></h1>
-            <?= $article['description'] ?>
-
-            <p>
+        <div class="articleList-bottom">
+                <?= $article['status'] ?>
                 <a href="/editor/<?= $article['url'] ?>"><i class="fa fa-pencil fa-fw"></i> Editovať </a>
                 <a href="/clanky/<?= $article['url'] ?>/odstranit"
                    onclick="return confirm('Naozaj chcete odstrániť článok?');"><i class="fa fa-trash-o fa-fw"></i>Odstrániť
                 </a>
-            </p>
-
         </div>
     </div>
 
